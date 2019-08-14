@@ -208,4 +208,54 @@
       pic_url = #{picUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 后台 -->
+  <delete id="deleteByPrimaryKey2" parameterType="java.lang.Integer">
+    delete from speaker
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 批量删除 -->
+  <delete id="deleteAll2">
+  	delete from speaker where id in
+  	<foreach collection="array" item="ids" separator="," open="(" close=")">
+  		#{ids}
+  	</foreach>
+  </delete>
+  
+  <insert id="insert2" parameterType="com.zhiyou.model.Speaker">
+    insert into speaker (id, speaker_name, speaker_desc, 
+      speaker_job, pic_url)
+    values (#{id,jdbcType=INTEGER}, #{speakerName,jdbcType=VARCHAR}, #{speakerDesc,jdbcType=VARCHAR}, 
+      #{speakerJob,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey2" parameterType="com.zhiyou.model.Speaker">
+    update speaker
+	<set>
+		<if test="speakerName != null">
+			speaker_name = #{speakerName,jdbcType=VARCHAR},
+		</if>
+		<if test="speakerDesc != null">
+			speaker_desc = #{speakerDesc,jdbcType=VARCHAR},
+		</if>
+		<if test="speakerJob != null">
+			speaker_job = #{speakerJob,jdbcType=VARCHAR},
+		</if>
+		<if test="picUrl != null">
+			pic_url = #{picUrl,jdbcType=VARCHAR},
+		</if>
+	</set>     
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey2" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, speaker_name, speaker_desc, speaker_job, pic_url
+    from speaker
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll2" resultMap="BaseResultMap">
+    select id, speaker_name, speaker_desc, speaker_job, pic_url
+    from speaker
+  </select>
+  
 </mapper>

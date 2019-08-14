@@ -1,4 +1,4 @@
-package com.zhiyou.service.foreground;
+package com.zhiyou.foreground.service;
 
 import java.util.List;
 

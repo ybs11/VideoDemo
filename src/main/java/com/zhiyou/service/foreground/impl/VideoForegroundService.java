@@ -9,11 +9,11 @@ import com.zhiyou.dao.CourseMapper;
 import com.zhiyou.dao.UserMapper;
 import com.zhiyou.dao.VideoMapper;
 import com.zhiyou.dao.extension.VideoExtensionMapper;
+import com.zhiyou.foreground.service.VideoService;
 import com.zhiyou.model.Course;
 import com.zhiyou.model.Video;
 import com.zhiyou.model.VideoExample;
 import com.zhiyou.model.extension.VideoExtension;
-import com.zhiyou.service.foreground.VideoService;
 import com.zhiyou.utils.VideoResult;
 
 @Service

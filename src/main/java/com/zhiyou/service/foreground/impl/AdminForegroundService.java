@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zhiyou.dao.AdminMapper;
+import com.zhiyou.foreground.service.AdminService;
 import com.zhiyou.model.Admin;
 import com.zhiyou.model.AdminExample;
 import com.zhiyou.model.AdminExample.Criteria;
-import com.zhiyou.service.foreground.AdminService;
 @Service
 public class AdminForegroundService implements AdminService{
 

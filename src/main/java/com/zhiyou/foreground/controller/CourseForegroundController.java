@@ -1,4 +1,4 @@
-package com.zhiyou.controller.foreground;
+package com.zhiyou.foreground.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,15 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.zhiyou.foreground.service.CourseService;
 import com.zhiyou.model.Course;
 import com.zhiyou.model.extension.CourseExtension;
-import com.zhiyou.service.foreground.CourseService;
-
 import com.zhiyou.utils.VideoResult;
 
 @Controller
 @RequestMapping("foreground")
-public class CourseController {
+public class CourseForegroundController {
 
 	@Autowired
 	private CourseService courseForegroundService;
@@ -27,8 +26,8 @@ public class CourseController {
 	public String CourseWithVideoAndSubject(String subjectId,HttpServletRequest req) {
 		List<CourseExtension> list = courseForegroundService.selectIncludeVideoAndSubjectBySubjectId(Integer.valueOf(subjectId));
 		if(list.isEmpty()) {
-			System.out.println("ÎÞ");
-			req.setAttribute("msg", "Ä¾ÓÐ¿Î£¬±ðµãÎÒ");
+			System.out.println("ï¿½ï¿½");
+			req.setAttribute("msg", "Ä¾ï¿½Ð¿Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			return "index";
 		}
 		VideoResult videoResult = new VideoResult();

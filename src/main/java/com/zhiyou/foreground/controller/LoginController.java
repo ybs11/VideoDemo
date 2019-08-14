@@ -1,4 +1,4 @@
-package com.zhiyou.controller.foreground;
+package com.zhiyou.foreground.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.zhiyou.foreground.service.AdminService;
+import com.zhiyou.foreground.service.UserService;
 import com.zhiyou.model.Admin;
 import com.zhiyou.model.User;
-import com.zhiyou.service.foreground.AdminService;
-import com.zhiyou.service.foreground.UserService;
 import com.zhiyou.utils.MD5Utils;
 
 @Controller
@@ -32,9 +32,9 @@ public class LoginController {
 		String md5 = MD5Utils.md5(accountsPassword);
 
 		if(admin==null) {
-			req.setAttribute("msg","ÕËºÅ´íÎó");
+			req.setAttribute("msg","ï¿½ËºÅ´ï¿½ï¿½ï¿½");
 		}else if(!(md5.equals(admin.getPassword()))) {
-			req.setAttribute("msg","ÃÜÂë´íÎó");
+			req.setAttribute("msg","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}else {
 			req.getSession().setAttribute("admin", admin);
 			return "forward:/course/list.do";
@@ -86,13 +86,13 @@ public class LoginController {
 		User user = userService.SelectByAccounts(accounts);
 
 		if(user==null) {
-			//ÕËºÅ´íÎó
-			req.setAttribute("msg","ÕËºÅ´íÎó");
+			//ï¿½ËºÅ´ï¿½ï¿½ï¿½
+			req.setAttribute("msg","ï¿½ËºÅ´ï¿½ï¿½ï¿½");
 		}else if(!(md5.equals(user.getPassword()))) {
-			//ÃÜÂë´íÎó
-			req.setAttribute("msg","ÃÜÂë´íÎó");
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			req.setAttribute("msg","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}else {
-			//µÇÂ¼³É¹¦
+			//ï¿½ï¿½Â¼ï¿½É¹ï¿½
 
 			req.getSession().setAttribute("user", user);
 			

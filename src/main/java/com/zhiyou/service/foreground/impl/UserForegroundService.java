@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zhiyou.dao.UserMapper;
+import com.zhiyou.foreground.service.UserService;
 import com.zhiyou.model.User;
 import com.zhiyou.model.UserExample;
 import com.zhiyou.model.UserExample.Criteria;
-import com.zhiyou.service.foreground.UserService;
 
 @Service
 public class UserForegroundService implements UserService{
