@@ -130,9 +130,9 @@
 					<div class="chapter">
 						<p class="biaoti">
 							<a
-								href="/videoPlay.do?videoId=${i.videoId}&subjectId=${j.subjectId}">${i.title}</a>
+								href="/foreground/videoPlay.do?videoId=${i.videoId}&subjectId=${j.subjectId}">${i.title}</a>
 						</p>
-						<p class="lecturer"><a href="/videoPlay.do?videoId=${i.videoId}&subjectId=${j.subjectId}">${i.detail }</a></p>
+						<p class="lecturer"><a href="/foreground/videoPlay.do?videoId=${i.videoId}&subjectId=${j.subjectId}">${i.detail }</a></p>
 						<p class="lecturer">${i.speaker.speakerJob}：${i.speaker.speakerName}</p>
 						<div class="v-info">
 							<span class="count"><img src="/static/z/count.png"

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zhiyou.model.Course;
 import com.zhiyou.model.extension.CourseExtension;
-import com.zhiyou.service.foreground.CourseForegroundService;
+import com.zhiyou.service.foreground.impl.CourseForegroundServiceImpl;
 import com.zhiyou.utils.VideoResult;
 
 @Controller
@@ -20,7 +20,7 @@ import com.zhiyou.utils.VideoResult;
 public class CourseController {
 
 	@Autowired
-	private CourseForegroundService courseForegroundService;
+	private CourseForegroundServiceImpl courseForegroundService;
 
 	@RequestMapping("courseList.do")
 	public String CourseWithVideoAndSubject(String subjectId,HttpServletRequest req) {

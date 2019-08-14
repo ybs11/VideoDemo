@@ -1,4 +1,4 @@
-package com.zhiyou.service.foreground;
+package com.zhiyou.service.foreground.impl;
 
 import java.util.List;
 
@@ -13,10 +13,11 @@ import com.zhiyou.model.Course;
 import com.zhiyou.model.Video;
 import com.zhiyou.model.VideoExample;
 import com.zhiyou.model.extension.VideoExtension;
+import com.zhiyou.service.foreground.VideoService;
 import com.zhiyou.utils.VideoResult;
 
 @Service
-public class VideoForegroundService {
+public class VideoForegroundService implements VideoService{
 
 	@Autowired
 	private VideoMapper videoMapper;
