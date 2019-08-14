@@ -67,7 +67,7 @@
 			<img alt="" src="/static/z/banner-1.jpg" width="100%"
 				height="470px;">
 		</div>
-		<c:forEach items="${videoResult.data}" var="i" varStatus="status">
+		<c:forEach items="${videoResult.data.list}" var="i" varStatus="status">
 			<!--面包屑导航-->
 			<c:if test="${status.first }">
 				<div class="container mian-nav" id="navDiv">公开课 /
@@ -90,7 +90,7 @@
 								<c:if test="${j.videoId != null}">
 								<li class="section-main">
 								
-								<a href="/videoPlay.do?videoId=${j.videoId}&subjectId=${subjectId}"> <div class="thum" style="background-image: url(${j.imageUrl})"></div> </a>
+								<a href="/foreground/videoPlay.do?videoId=${j.videoId}&subjectId=${videoResult.data.subjectId}"> <div class="thum" style="background-image: url(${j.imageUrl})"></div> </a>
 									<p>${j.title}</p>
 									
 									 <div class="classify-v-info">

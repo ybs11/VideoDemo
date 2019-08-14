@@ -8,4 +8,5 @@ import lombok.Data;
 public class VideoExtension extends Video{
 
 	private Speaker speaker;
+	private CourseExtension course;
 }

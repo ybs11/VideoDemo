@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.zhiyou.dao.extension.CourseExtensionMapper;
 import com.zhiyou.model.Course;
+import com.zhiyou.model.extension.CourseExtension;
 
 @Service
 public class CourseForegroundService {
@@ -14,7 +15,7 @@ public class CourseForegroundService {
 	@Autowired 
 	private CourseExtensionMapper courseExtensionMapper;
 
-	public List<Course> selectIncludeVideoAndSubjectBySubjectId(int subjectId){
+	public List<CourseExtension> selectIncludeVideoAndSubjectBySubjectId(int subjectId){
 		return	courseExtensionMapper.selectIncludeVideoAndSubjectBySubjectId(subjectId);
 	}
 }

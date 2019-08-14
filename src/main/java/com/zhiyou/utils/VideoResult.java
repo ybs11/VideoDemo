@@ -11,5 +11,7 @@ public class VideoResult {
     private String msg;
 
 
-    private Object data;    
+    private Object data;
+
+    
 }
