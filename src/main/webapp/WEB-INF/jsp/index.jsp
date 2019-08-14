@@ -77,7 +77,7 @@
 					<tbody>
 						<tr>
 							<td colspan="2"><a
-								href="/courseWithVideoAndSubject.do?subjectId=1"> <img
+								href="/foreground/courseList.do?subjectId=1"> <img
 									src="/static/z/html5.jpg" alt="" class="image scale"
 									draggable="false">
 									<div class="headline">
@@ -87,7 +87,7 @@
 							</a></td>
 							<td>
 								<!--上线时修改id--> <a
-								href="/courseWithVideoAndSubject.do?subjectId=6"> <img
+								href="/foreground/courseList.do?subjectId=6"> <img
 									src="/static/z/ui.jpg" alt="" class="image scale"
 									draggable="false">
 									<div class="headline">
@@ -97,7 +97,7 @@
 							</a>
 							</td>
 							<td rowspan="2" class="one_three"><a class="opacity5"
-								href="/courseWithVideoAndSubject.do?subjectId=2"> <img
+								href="/foreground/courseList.do?subjectId=2"> <img
 									src="/static/z/java.jpg" alt="" class="image "
 									draggable="false">
 									<div class="headline">
@@ -108,7 +108,7 @@
 						</tr>
 						<tr>
 							<td><a class="opacity5"
-								href="/courseWithVideoAndSubject.do?subjectId=5"> <img
+								href="/foreground/courseList.do?subjectId=5"> <img
 									src="/static/z/bigdata.jpg" alt="" class="image"
 									draggable="false">
 									<div class="headline">
@@ -117,7 +117,7 @@
 									</div>
 							</a></td>
 							<td colspan="2"><a
-								href="/courseWithVideoAndSubject.do?subjectId=10">
+								href="/foreground/courseList.do?subjectId=10">
 									<img src="/static/z/python.jpg" alt=""
 									class="image scale" draggable="false">
 									<div class="headline">
@@ -128,7 +128,7 @@
 						</tr>
 						<tr>
 							<td colspan="2"><a
-								href="/courseWithVideoAndSubject.do?subjectId=11">
+								href="/foreground/courseList.do?subjectId=11">
 									<img src="/static/z/php.jpg" alt=""
 									class="image scale" draggable="false">
 									<div class="headline">
