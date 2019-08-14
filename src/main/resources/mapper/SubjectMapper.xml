@@ -161,4 +161,28 @@
     set subject_name = #{subjectName,jdbcType=VARCHAR}
     where subject_id = #{subjectId,jdbcType=INTEGER}
   </update>
+  
+  <!-- 后台 -->
+    <delete id="deleteByPrimaryKey2" parameterType="java.lang.Integer">
+    delete from subject
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert2" parameterType="com.zhiyou.model.Subject">
+    insert into subject (subject_id, subject_name)
+    values (#{subjectId,jdbcType=INTEGER}, #{subjectName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey2" parameterType="com.zhiyou.model.Subject">
+    update subject
+    set subject_name = #{subjectName,jdbcType=VARCHAR}
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey2" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select subject_id, subject_name
+    from subject
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll2" resultMap="BaseResultMap">
+    select subject_id, subject_name
+    from subject
+  </select>
 </mapper>

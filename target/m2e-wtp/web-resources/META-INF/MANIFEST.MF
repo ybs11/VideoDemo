@@ -1,6 +1,10 @@
 Manifest-Version: 1.0
 Implementation-Title: VideoDemo
 Implementation-Version: 1.0.0-SNAPSHOT
-Build-Jdk-Spec: 1.8
+Built-By: Sunny
+Implementation-Vendor-Id: com.zhiyou
+Build-Jdk: 1.8.0_141
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/VideoDemo
 Created-By: Maven Integration for Eclipse
 

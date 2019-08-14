@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://huahua.cn/common/" prefix="itcast" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +11,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>智游教育</title>
 
-<link href="/VideoSSM/static/z/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/static/z/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-<script src="/VideoSSM/static/js/jquery-1.js"></script>
-<script src="/VideoSSM/static/js/bootstrap.js"></script>
-<script src="/VideoSSM/static/js/confirm.js"></script>
-<script src="/VideoSSM/static/js/jquery.js"></script>
-<script src="/VideoSSM/static/js/message_cn.js"></script>
+<script src="/static/js/jquery-1.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/confirm.js"></script>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/message_cn.js"></script>
 
 <style type="text/css">
 th {
@@ -37,8 +38,8 @@ th {
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
 					<li><a href="/VideoSSM/videoShow.do">视频管理</a></li>
-					<li><a href="/VideoSSM/speakerShow.do">主讲人管理</a></li>
-					<li class="active"><a href="/VideoSSM/courseShow.do">课程管理</a></li>
+					<li><a href="/speaker/show.do">主讲人管理</a></li>
+					<li class="active"><a href="/course/list.do">课程管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i
@@ -64,13 +65,13 @@ th {
 		</div>
 	</div>
 
-	<form action="/VideoSSM/courseDeleteAll.do">
+	<form action="${pageContext.request.contextPath}/course/deleteAll.do">
 		<div class="container">
 			<button onclick="showAddPage()" type="button"
 				class="btn btn-info dropdown-toggle" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false">添加</button>
-			<input id="ids" name="ids" type="hidden">
-			<button onclick="deleteAll()" type="submit" id="btn"
+
+			<button onclick="deleteAll()" type="button" id="btn"
 				class="btn btn-info dropdown-toggle">批量删除</button>
 		</div>
 
@@ -80,7 +81,7 @@ th {
 				style="text-align: center; table-layout: fixed;">
 				<thead>
 					<tr class="active">
-						<th><input type="checkbox" id="all"></th>
+						<th><input type="checkbox" id="all" onclick="swapCheck()"></th>
 						<th>序号</th>
 						<th style="width: 16%">标题</th>
 						<th style="width: 60%">简介</th>
@@ -89,30 +90,23 @@ th {
 					</tr>
 				</thead>
 				<tbody>
-
-					<c:forEach items="${list}" var="i">
+				
+					<c:forEach items="${page.rows}" var="i">
 						<tr>
-							<td><input type="checkbox" name="select" value="${i.id}"></td>
+							<td><input type="checkbox" name="check" value="${i.id}"></td>
 							<td>${i.id}</td>
 							<td>${i.courseTitle}</td>
-							<td
-								style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.courseDesc}</td>
-							<td><a href="/VideoSSM/courseUpdateShow.do?id=${i.id} ">✎</a></td>
-							<td><a href="javascript:void(0);" id="deletedID"
-								onclick="delCourseById('#deletedID','${i.id}','${i.courseTitle}')">X</a></td>
+							<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.courseDesc}</td>
+							<td><a href="${pageContext.request.contextPath}/course/edit.do?id=${i.id}">✎</a></td>
+							<td><a id="del" href="javascript:void(0);" onclick="delCourseById('#del','${i.id}','${i.courseTitle}')">X</a></td>
+							<!-- <a href="#" onclick="delCourseById(${i.id},${i.courseTitle})">X</a> -->
+						</tr>
 					</c:forEach>
-					
+
 					<tr>
-						<td colspan="2"><font>总共${count}条,当前第${page}页</font> <c:if
-								test="${count%5==0}">
-								<c:set var="page" value="${count/5}">
-								</c:set>
-							</c:if> <c:if test="${count%5!=0}">
-								<c:set var="page" value="${count/5+1}">
-								</c:set>
-							</c:if> <c:forEach var="i" begin="1" end="${page}">
-								<a href="courseShow.do?page=${i}">第${i}页</a>
-							</c:forEach>
+						<td colspan="6">
+							<itcast:page url="${pageContext.request.contextPath}/course/list.do"/>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -121,50 +115,6 @@ th {
 	</form>
 
 
-	<script type="text/javascript">
-		$(function() {
-			$("#all").click(function() {
-				$("input[name='select']").attr("checked", this.checked);
-			})
-
-		})
-		function deleteAll() {
-			var selected = [];
-			$.each($("input[name='select']"), function() {
-				if (this.checked) {
-					selected.push($(this).val());
-				}
-			})
-			var ids = JSON.stringify(selected);
-			$("#ids").val(ids);
-		}
-		function showAddPage() {
-			location.href = "/VideoSSM/courseAddShow.do";
-		}
-		function delCourseById(Obj, id, title) {
-
-			Confirm.show('温馨提示：', '确定要删除' + title + '么？', {
-				'Delete' : {
-					'primary' : true,
-					'callback' : function() {
-						var param = {
-							"id" : id
-						};
-						$.post("/VideoSSM/courseDelete.do", param, function(
-								data) {
-							if (data == 'success') {
-								Confirm.show('温馨提示：', '删除成功');
-								window.location.reload();
-								//$(Obj).parent().parent().remove();
-							} else {
-								Confirm.show('温馨提示：', '操作失败');
-							}
-						});
-					}
-				}
-			});
-		}
-	</script>
 
 
 	<div id="modal-background" class=""></div>
@@ -185,5 +135,91 @@ th {
 		</div>
 	</div>
 	<div id="modal-background" class=""></div>
+
+
+	
+	
+	<!-- 新增 -->
+	<script type="text/javascript">
+		function showAddPage(){
+			location.href="${pageContext.request.contextPath}/course/addCourseShow.do";
+		}
+		function delCourseById(Obj,id,title){
+
+			Confirm.show('温馨提示：', '确定要删除'+title+'么？', {
+				'Delete': {
+					'primary': true,
+					'callback': function() {
+						var param={"id":id};
+						$.post("${pageContext.request.contextPath}/course/delCourseById.do",param,function(data){
+							if(data == "success"){
+								Confirm.show('温馨提示：', '删除成功');
+								$(Obj).parent().parent().remove();
+								window.location.reload();
+							}else{
+								Confirm.show('温馨提示：', '操作失败');
+							}
+						});
+					}
+				}
+			});
+		}
+		
+		
+		/*全选与取消*/
+		var isCheckAll = false;  
+	    function swapCheck() {  
+	        if (isCheckAll) {  
+	            $("input[type='checkbox']").each(function() {  
+	                this.checked = false;  
+	            });  
+	            isCheckAll = false;  
+	        } else {  
+	            $("input[type='checkbox']").each(function() {  
+	                this.checked = true;  
+	            });  
+	            isCheckAll = true;  
+	        }  
+	    }
+		
+	    /*批量删除*/
+	    function deleteAll() {
+			var check = document.getElementsByName("check");
+			var ids = "";
+			for (var i = 0; i < check.length; i++) {
+				if (i == check.length-1) {
+					if (check[i].checked) {
+						ids+=check[i].value;
+					}
+				} else {
+					if (check[i].checked) {
+						ids+=check[i].value+",";
+					}
+				}
+			}
+			deleteCustomer(ids);
+		}
+	    function deleteCustomer(ids) {
+	    	Confirm.show('温馨提示：', '确定要删除所选用户吗？',{
+				'Delete': {
+					'primary': true,
+					'callback': function() {
+						$.post({
+							url:"${pageContext.request.contextPath}/course/deleteAll.do?ids="+ids,
+							success:function(data){
+			    				Confirm.show('温馨提示：', '删除成功');
+			    				setTimeout(function(){
+			    					window.location.reload();
+			    				},2000)
+			    			}
+							
+						});
+					}
+				}
+			});
+		}
+	    
+	    
+	</script>
 </body>
 </html>

@@ -27,4 +27,23 @@ public interface SpeakerMapper {
     int updateByPrimaryKeySelective(Speaker record);
 
     int updateByPrimaryKey(Speaker record);
+    
+//    后台
+    void deleteByPrimaryKey2(Integer id);
+    
+    /**
+     * 批量删除
+     * @param ids
+     */
+    void deleteAll2(Integer[] ids);
+
+    void insert2(Speaker record);
+
+    Speaker selectByPrimaryKey2(Integer id);
+
+    List<Speaker> selectAll2();
+
+    void updateByPrimaryKey2(Speaker record);
+    
+    
 }
