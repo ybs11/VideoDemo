@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.zhiyou.model.Course;
 import com.zhiyou.model.extension.CourseExtension;
 import com.zhiyou.service.foreground.CourseService;
-import com.zhiyou.service.foreground.impl.CourseForegroundService;
+
 import com.zhiyou.utils.VideoResult;
 
 @Controller
