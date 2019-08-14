@@ -1,4 +1,4 @@
-package com.zhiyou.controller;
+package com.zhiyou.controller.foreground;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
