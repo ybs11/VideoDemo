@@ -18,6 +18,7 @@ public class SpeakerController {
 	
 	@RequestMapping("/show.do")
 	public String show(Model model) {
+		System.out.println("====");
 		List<Speaker> list = speakerService.selectAll();
 		model.addAttribute("list", list);
 		return "background/BackgroundSpeakerShow";
