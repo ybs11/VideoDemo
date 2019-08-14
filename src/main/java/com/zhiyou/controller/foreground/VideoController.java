@@ -14,7 +14,9 @@ import com.zhiyou.model.Course;
 import com.zhiyou.model.Video;
 import com.zhiyou.model.extension.CourseExtension;
 import com.zhiyou.model.extension.VideoExtension;
-import com.zhiyou.service.foreground.impl.CourseForegroundServiceImpl;
+import com.zhiyou.service.foreground.CourseService;
+import com.zhiyou.service.foreground.VideoService;
+import com.zhiyou.service.foreground.impl.CourseForegroundService;
 import com.zhiyou.service.foreground.impl.VideoForegroundService;
 import com.zhiyou.utils.VideoResult;
 
@@ -23,10 +25,10 @@ import com.zhiyou.utils.VideoResult;
 public class VideoController {
 
 	@Autowired
-	private VideoForegroundService videoForegroundService;
+	private VideoService videoForegroundService;
 	
 	@Autowired
-	private CourseForegroundServiceImpl courseForegroundService;
+	private CourseService courseForegroundService;
 	
 	@RequestMapping("/videoPlay.do")
 	public String videoPlay(String videoId,String subjectId,HttpServletRequest req) {

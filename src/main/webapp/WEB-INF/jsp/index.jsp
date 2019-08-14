@@ -51,7 +51,7 @@
 			</c:if>
 
 			<a onclick="JavaScript:addFavorite2()"><img
-				src="static/z/sc.png" draggable="false">加入收藏</a> <a
+				src="/static/z/sc.png" draggable="false">加入收藏</a> <a
 				id="adminLoginLink"> <img src="/static/z/we.png"
 				draggable="false">后台管理
 			</a> <a class="color_e4"><img src="/static/z/phone.png"

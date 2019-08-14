@@ -12,11 +12,11 @@ $('nav').mouseleave(function () {
 //导航栏下拉菜单
 $('nav .nav_down').mouseenter(function () {
 	$('#nav_down').stop().slideDown();
-	$(this).children('img').attr('src', '/VideoSSM/static/z/nav_down2.png');
+	$(this).children('img').attr('src', '/static/z/nav_down2.png');
 });
 $('nav .nav_down').mouseleave(function () {
 	$('#nav_down').stop().slideUp();
-	$(this).children('img').attr('src', '/VideoSSM/static/z/nav_down.png');
+	$(this).children('img').attr('src', '/static/z/nav_down.png');
 });
 
 $(window).scroll(function () {
@@ -115,7 +115,7 @@ $("#regEmail").blur(function(){
 	if(null != emailVal && ""!=emailVal){
 		var params={"email":emailVal};
 		// alert(params);
-		$.post("/VideoSSM/validateEmail.do",params,function(data){
+		$.post("/validateEmail.do",params,function(data){
 			if(data=="success"){
 				regIsCommitEmail=true;
 				$("#emailMsg").text("该邮箱可用").css("color","green");
@@ -169,7 +169,7 @@ function commitRegForm(){
 
 		$.ajax({
 
-			url:"/VideoSSM/regUser.do",
+			url:"/regUser.do",
 			data:{"regForm" :$("#regForm").serialize()},
 			type:"POST",
 			success:function(data){
@@ -210,7 +210,7 @@ function commitLogin(){
 		 //alert(params);
 		// post要小写
 		$.post({
-			url:"/VideoSSM/userLogin.do",
+			url:"/userLogin.do",
 			data:{"loginForm":$("#loginForm").serialize()},
 //			xhrFields: {
 //				withCredentials: true

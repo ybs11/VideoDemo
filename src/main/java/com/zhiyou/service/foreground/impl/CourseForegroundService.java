@@ -11,7 +11,7 @@ import com.zhiyou.model.extension.CourseExtension;
 import com.zhiyou.service.foreground.CourseService;
 
 @Service
-public class CourseForegroundServiceImpl implements CourseService{
+public class CourseForegroundService implements CourseService{
 
 	@Autowired 
 	private CourseExtensionMapper courseExtensionMapper;
