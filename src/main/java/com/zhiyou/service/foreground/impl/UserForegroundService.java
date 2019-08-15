@@ -57,4 +57,9 @@ public class UserForegroundService implements UserService{
 		return codeString;
 	}
 
+	@Override
+	public void update(User user) {
+		int updateByPrimaryKey = userMapper.updateByPrimaryKey(user);
+	}
+
 }

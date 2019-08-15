@@ -366,7 +366,7 @@ function mailcheckNew() {
 
 var countNew = 60;
 function timeNew(){
-	if(count==0){
+	if(countNew==0){
 		$("#CodeNowNew").val("");
 		$("#codeBtnNew").attr('disabled',false);
 		$("#codeBtnNew").text("发送验证码");
@@ -375,11 +375,11 @@ function timeNew(){
 	}else{
 		
 		$("#codeBtnNew").attr('disabled',true);
-		$("#codeBtnNew").text("重新发送"+count+"s");
-		count--;
+		$("#codeBtnNew").text("重新发送"+countNew+"s");
+		countNew--;
 	}
 setTimeout(function () {
-	time()
+	timeNew()
 },1000)	
 		
 }

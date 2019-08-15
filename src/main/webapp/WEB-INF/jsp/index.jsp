@@ -233,7 +233,7 @@
 				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
-				<form id="passwordForm" action="/updatePassword.do">
+				<form id="passwordForm" action="/foreground/updatePassword.do">
 					<h3>找回密码</h3>
 					<input id="loginEmailNew" placeholder="请输入邮箱" name="email"
 						type="email"> 
