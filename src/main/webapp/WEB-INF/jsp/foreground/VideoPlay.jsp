@@ -20,8 +20,8 @@
 <meta name="description"
 	content="智游教育在线课程视频,为您提供java,python,HTML5,UI,PHP,大数据等学科经典视频教程在线浏览学习,精细化知识点解析,深入浅出,想学不会都难,智游教育,学习成就梦想！">
 
-<link rel="stylesheet" href="/VideoSSM/static/z/base.css">
-<link rel="stylesheet" href="/VideoSSM/static/z/css.css">
+<link rel="stylesheet" href="/static/z/base.css">
+<link rel="stylesheet" href="/static/z/css.css">
 <link rel="icon" href="http://localhost:8080/Voids/static/z/favicon.png"
 	type="image/png">
 <!--  <link href="/VideoSSM/static/z/video-js.css" rel="stylesheet" type="text/css"> -->
@@ -41,25 +41,25 @@
 
 			<c:if test="${empty user.accounts }">
 				<div id="userBlock" style="float: right">
-					<a id="loginLink"><img src="/VideoSSM/static/z/we.png"
+					<a id="loginLink"><img src="/static/z/we.png"
 						draggable="false">登录</a> <a id="regLink"><img
-						src="/VideoSSM/static/z/we.png" draggable="false">注册</a>
+						src="/static/z/we.png" draggable="false">注册</a>
 				</div>
 			</c:if>
 
 			<c:if test="${not empty user.accounts  }">
 				<div id="userAccount" style="float: right">
-					<a href="/VideoSSM/loginOut.do">退出</a> <a
-						href="/VideoSSM/foreground/PersonalCenter.jsp">
+					<a href="/loginOut.do">退出</a> <a
+						href="/foreground/PersonalCenter.jsp">
 						${user.accounts}</a>
 				</div>
 			</c:if>
 
 			<a onclick="JavaScript:addFavorite2()"><img
-				src="/VideoSSM/static/z/sc.png" draggable="false">加入收藏</a> <a
-				id="adminLoginLink"> <img src="/VideoSSM/static/z/we.png"
+				src="/static/z/sc.png" draggable="false">加入收藏</a> <a
+				id="adminLoginLink"> <img src="/static/z/we.png"
 				draggable="false">后台管理
-			</a> <a class="color_e4"><img src="/VideoSSM/static/z/phone.png"
+			</a> <a class="color_e4"><img src="/static/z/phone.png"
 				draggable="false"> 0371-88888598 4006-371-555</a>
 
 		</div>
@@ -72,10 +72,10 @@
 	
 		<!--面包屑导航-->
 		
-		<div class="container mian-nav">公开课 / ${video.course.subject.subjectName }</div>
+<%-- 		<div class="container mian-nav">公开课 / ${videoResult.data.course.subject.subjectName }</div> --%>
 	
 		
-		<input id="videoId" value="${video.videoId }" type="hidden">
+		<input id="videoId" value="${videoResult.data.video.videoId }" type="hidden">
 		
 		<div id="content">
 				<div class="intro">
@@ -83,37 +83,37 @@
 						<div class="v-intro">
 							<div class="left">
 								<c:if test="${user != null }">
-								<video id="videoPlayer" src="${video.videoUrl} "
+								<video id="videoPlayer" src="${videoResult.data.video.videoUrl} "
 									class="video-js vjs-default-skin" controls="controls"
-									poster="${video.imageUrl }" data-setup="{}" height="280" width="627">
+									poster="${videoResult.data.video.imageUrl }" data-setup="{}" height="280" width="627">
 								</video>
 								</c:if>
 								<c:if test="${empty user}">
 								<video id="videoPlayer" src=""
 									class="video-js vjs-default-skin" controls="controls"
-									poster="${video.imageUrl }" data-setup="{}" height="280" width="627">
+									poster="${videoResult.data.video.imageUrl }" data-setup="{}" height="280" width="627">
 								</video>
 								</c:if>
 							</div>
 
 							<div class="right">
-								<p class="right-title">${video.title}</p>
+								<p class="right-title">${videoResult.data.video.title}</p>
 								<div class="avatar">
-									<span style="background-image: url(${video.speaker.picUrl})"></span>
+									<span style="background-image: url(${videoResult.data.video.speaker.picUrl})"></span>
 									<p>
-										<b>${video.speaker.speakerJob }：${video.speaker.speakerName }</b><br>
-										<i>${video.speaker.speakerDesc}</i>
+										<b>${videoResult.data.video.speaker.speakerJob }：${videoResult.data.video.speaker.speakerName }</b><br>
+										<i>${videoResult.data.video.speaker.speakerDesc}</i>
 									</p>
 								</div>
 								<p class="video-intro">
-									<span>本节内容：</span>${video.detail}
+									<span>本节内容：</span>${videoResult.data.video.detail}
 								</p>
 							</div>
 						</div>
 
 						<div class="kcjs">
 							<p class="title">课程介绍</p>
-							<p class="content">${video.course.courseDesc }</p>
+							<p class="content">${videoResult.data.video.course.courseDesc }</p>
 						</div>
 
 					</div>
@@ -125,19 +125,19 @@
 				<div class="container">
 					<p class="title">目录</p>
 
-                  <c:forEach items="${course }" var="j"> 
+                  <c:forEach items="${videoResult.data.course }" var="j"> 
 					<c:forEach items="${j.videos }" var="i">
 					<div class="chapter">
 						<p class="biaoti">
 							<a
-								href="/VideoSSM/videoPlay.do?videoId=${i.videoId}&subjectId=${j.subjectId}">${i.title}</a>
+								href="/foreground/videoPlay.do?videoId=${i.videoId}&subjectId=${j.subjectId}">${i.title}</a>
 						</p>
-						<p class="lecturer"><a href="/VideoSSM/videoPlay.do?videoId=${i.videoId}&subjectId=${j.subjectId}">${i.detail }</a></p>
+						<p class="lecturer"><a href="/foreground/videoPlay.do?videoId=${i.videoId}&subjectId=${j.subjectId}">${i.detail }</a></p>
 						<p class="lecturer">${i.speaker.speakerJob}：${i.speaker.speakerName}</p>
 						<div class="v-info">
-							<span class="count"><img src="/VideoSSM/static/z/count.png"
+							<span class="count"><img src="/static/z/count.png"
 								alt="">${i.playNum}</span> <span class="duration"><img
-								src="/VideoSSM/static/z/player.png" alt="">${i.time}</span>
+								src="/static/z/player.png" alt="">${i.time}</span>
 						</div>
 					</div>
                   </c:forEach>
@@ -199,7 +199,7 @@
 	<div class="mask hidden" id="login">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="/VideoSSM/static/z/logo.png" alt="" class="ma">
+				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
 				<form id="loginForm" action="">
@@ -224,15 +224,15 @@
 	<div class="mask hidden" id="adminLogin">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="/VideoSSM/static/z/logo.png" alt="" class="ma">
+				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
-				<form id="AdminLoginForm" action="/VideoSSM/adminLogin.do"
+				<form id="AdminLoginForm" action="/adminLogin.do"
 					method="post">
 					<h3>管理员登录</h3>
 					<input id="loginAccounts" placeholder="请输入管理员账户" name="accounts"
 						type="text"
-						style="width: 100%; margin: 15px 0; padding: 0 10px 0 50px; border: 1px solid #bac0ce; background-image: url(/VideoSSM/static/z/user.png); background-repeat: no-repeat; background-position: 8px center;">
+						style="width: 100%; margin: 15px 0; padding: 0 10px 0 50px; border: 1px solid #bac0ce; background-image: url(/static/z/user.png); background-repeat: no-repeat; background-position: 8px center;">
 
 					<input id="loginAccountsPassword" placeholder="请输入密码"
 						name="accountsPassword" type="password">
@@ -255,7 +255,7 @@
 	<div class="mask hidden" id="reg">
 		<div class="mask_content">
 			<div class="mask_content_header">
-				<img src="/VideoSSM/static/z/logo.png" alt="" class="ma">
+				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
 				<form id="regForm"
@@ -288,11 +288,11 @@
 
 
 
-	<script src="/VideoSSM/static/z/jquery-1.js"></script>
-	<script src="/VideoSSM/static/z/gVerify.js"></script>
-	<script src="/VideoSSM/static/z/index.js"></script>
+	<script src="/static/z/jquery-1.js"></script>
+	<script src="/static/z/gVerify.js"></script>
+	<script src="/static/z/index.js"></script>
 
-	<script type="text/javascript" src="/VideoSSM/js/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#loginLink").click(function() {

@@ -27,4 +27,15 @@ public interface SubjectMapper {
     int updateByPrimaryKeySelective(Subject record);
 
     int updateByPrimaryKey(Subject record);
+    
+    //后台
+    void deleteByPrimaryKey2(Integer subjectId);
+
+    void insert2(Subject record);
+
+    Subject selectByPrimaryKey2(Integer subjectId);
+
+    List<Subject> selectAll2();
+
+    void updateByPrimaryKey2(Subject record);
 }

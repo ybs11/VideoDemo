@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.dao.extension.VideoExtensionMapper">
+ <resultMap type="com.zhiyou.model.extension.VideoExtension" id="videoMap">
+		<id column="video_id" property="videoId" />
+		<result column="title" property="title" />
+		<result column="detail" property="detail" />
+		<result column="time" property="time" />
+		<result column="video_url" property="videoUrl" />
+		<result column="image_url" property="imageUrl" />
+		<result column="play_num" property="playNum" />
+		<result column="speaker_id" property="speakerId" />
+		<result column="course_id" property="courseId" />
+		<association column="speaker_id" property="speaker" javaType="com.zhiyou.model.Speaker">
+			<id column="id" property="id" />
+			<result column="speaker_name" property="speakerName" />
+			<result column="speaker_desc" property="speakerDesc" />
+			<result column="speaker_job" property="speakerJob" />
+			<result column="pic_url" property="picUrl" />
+		</association>
+		<association column="course_id" property="course" javaType="com.zhiyou.model.extension.CourseExtension">
+			<id column="id" property="id" />
+			<result column="course_title" property="courseTitle" />
+			<result column="course_desc" property="courseDesc" />
+			<result column="subject_id" property="subjectId" />
+			<association column="subject_id" property="subject" javaType="com.zhiyou.model.Subject">
+			<id column="subject_id" property="subjectId" />
+			<result column="subject_name" property="subjectName" />
+		   </association>
+		</association>
+	</resultMap>
+ 
+ <select id="selectById" resultMap="videoMap">
+		select * from video v,speaker s,course c , subject sub where v.speaker_id = s.id and
+		v.course_id =c.id and c.subject_id= sub.subject_id
+		and
+		video_id=#{videoId}
+	</select>
+</mapper>

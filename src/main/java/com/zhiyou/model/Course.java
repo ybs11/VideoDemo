@@ -1,5 +1,8 @@
 package com.zhiyou.model;
 
+import lombok.Data;
+
+@Data
 public class Course {
     private Integer id;
 
@@ -8,36 +11,11 @@ public class Course {
     private String courseDesc;
 
     private Integer subjectId;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCourseTitle() {
-        return courseTitle;
-    }
-
-    public void setCourseTitle(String courseTitle) {
-        this.courseTitle = courseTitle == null ? null : courseTitle.trim();
-    }
-
-    public String getCourseDesc() {
-        return courseDesc;
-    }
-
-    public void setCourseDesc(String courseDesc) {
-        this.courseDesc = courseDesc == null ? null : courseDesc.trim();
-    }
-
-    public Integer getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(Integer subjectId) {
-        this.subjectId = subjectId;
-    }
+    
+    // 当前页码数
+ 	private Integer page = 1;
+ 	// 数据库从哪一条数据开始查
+ 	private Integer start;
+ 	// 每页显示数据条数
+ 	private Integer rows = 10;
 }
