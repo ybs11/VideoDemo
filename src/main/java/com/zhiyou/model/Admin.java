@@ -1,6 +1,8 @@
 package com.zhiyou.model;
 
-public class Admin {
+import java.io.Serializable;
+
+public class Admin implements Serializable{
     private Integer adminId;
 
     private String accounts;

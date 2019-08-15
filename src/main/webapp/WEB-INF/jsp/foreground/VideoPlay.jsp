@@ -195,6 +195,39 @@
 	</footer>
 
 
+<!--找回密码-->
+	<div class="mask hidden" id="findPassword">
+		<div class="mask_content">
+			<div class="mask_content_header">
+				<img src="/static/z/logo.png" alt="" class="ma">
+			</div>
+			<div class="mask_content_body">
+				<form id="passwordForm" action="/foreground/updatePassword.do">
+					<h3>找回密码</h3>
+					<input id="loginEmailNew" placeholder="请输入邮箱" name="email"
+						type="email"> 
+					
+					 <input type="text" placeholder="请输入邮箱内的验证码"
+							id="codeNew"> 
+					<input type="hidden" id="CodeNowNew">
+					<div id="codeMsgNew"></div>
+					<button type="button" id="codeBtnNew">发送验证码</button>
+					
+					<input id="newLoginPassword"
+					placeholder="请输入新密码" name="password" type="password">
+					
+					<div id="msgFind">&nbsp;</div>
+					<input id="findSubBtn"  value="提    交" type="submit">
+				</form>
+			</div>
+			<div class="mask_content_footer">
+				<span id="find_close">关 闭</span>
+			</div>
+		</div>
+	</div>
+		<!-- ************************************************************************************* -->
+
+
 	<!--用户登录-->
 	<div class="mask hidden" id="login">
 		<div class="mask_content">
@@ -209,7 +242,7 @@
 						placeholder="请输入密码" name="password" type="password">
 					
 					<div id="forget">
-						<a href="">忘记密码？</a>
+						<a href="javascript:void(0)"  id="forgetPass">忘记密码？</a>
 					</div>
 					<div id="msgUser">&nbsp;</div>
 					<input id="userSubBtn" onclick="return commitLogin()" value="登　录" type="submit">
@@ -228,8 +261,7 @@
 				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
-				<form id="AdminLoginForm" action="/adminLogin.do"
-					method="post">
+				<form id="AdminLoginForm" action="adminLogin.do" method="post">
 					<h3>管理员登录</h3>
 					<input id="loginAccounts" placeholder="请输入管理员账户" name="accounts"
 						type="text"
@@ -260,13 +292,14 @@
 			</div>
 			<div class="mask_content_body">
 				<form id="regForm"
-					action="http://localhost:8080/Voids/user/insertUser.action">
+					action="">
 					<h3>新用户注册</h3>
 					<input id="regEmail" placeholder="请输入邮箱" name="email" type="email"><span
 						id="emailMsg"></span> <input id="regPsw" placeholder="请输入密码"
 						name="password" type="password"> <input id="regPswAgain"
 						placeholder="请再次输入密码" name="psw_again" type="password"><span
 						id="passMsg"></span>
+					
 					  <input  type="text" placeholder="请输入邮箱内的验证码"
 								id="code"> <input type="hidden" id="CodeNow">
 							<div id="codeMsg"></div>
@@ -283,7 +316,7 @@
 								style="cursor: pointer;">您的浏览器版本不支持canvas</canvas>
 						</div>
 					</div>
-					<input id="formsub" onclick="return commitRegForm();" value="注　册" type="submit">
+					<input id="formsub"  onclick="return commitRegForm();" value="注　册" type="submit">
 				</form>
 			</div>
 			<div class="mask_content_footer">
@@ -331,9 +364,24 @@
 			});
 		});
 
+		
+		$(document).ready(function() {
+			$("#find_close").click(function() {
+				$("#findPassword").toggle();
+			});
+		});
+		
+		$(document).ready(function() {
+			$("#forgetPass").click(function() {
+				$("#login").toggle();
+				$("#findPassword").toggle();
+			});
+		});
 		$(function() {
 			$("#adminSubBtn").attr('disabled', true);
 			$("input[name='accounts']").blur(accountsCheck);
+			$("#loginAccountsPassword").blur(accountsCheck);
+			$("#adminSubBtn").click(accountsCheck);
 		});
 		function accountsCheck() {
 
@@ -356,6 +404,7 @@
 			});
 		}
 		
+
 		$(function() {
 			$("#userSubBtn").attr('disabled', true);
 			$("#loginEmail").blur(UserCheck);

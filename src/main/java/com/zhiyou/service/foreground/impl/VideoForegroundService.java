@@ -3,6 +3,7 @@ package com.zhiyou.service.foreground.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.zhiyou.dao.CourseMapper;
@@ -28,6 +29,7 @@ public class VideoForegroundService implements VideoService{
 	@Autowired
 	private VideoExtensionMapper videoExtensionMapper;
 	
+	@Cacheable("SELCELT_VIDEO")
 	public VideoExtension selectById(Integer videoId) {
 		VideoExtension video = videoExtensionMapper.selectById(videoId);
 

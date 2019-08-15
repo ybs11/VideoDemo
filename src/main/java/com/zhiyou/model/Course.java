@@ -1,9 +1,11 @@
 package com.zhiyou.model;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class Course {
+public class Course implements Serializable{
     private Integer id;
 
     private String courseTitle;
