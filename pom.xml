@@ -74,14 +74,12 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
-		
 		<!--pagehelper -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 			<version>4.1.1</version>
 		</dependency>
-		
 		<!-- 上传下载文件 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -99,7 +97,6 @@
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
-			<version>1.6.1</version>
 		</dependency>
 	</dependencies>
 
@@ -115,5 +112,4 @@
 			</plugin>
 		</plugins>
 	</build>
-  
 </project>
