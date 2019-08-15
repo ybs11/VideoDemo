@@ -255,3 +255,131 @@ function addFavorite2() {
 		alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
 	}
 }
+
+
+
+$(function(){
+	$("#formsub").attr('disabled',true);
+	$("#codeBtn").click(function () {
+		mailsend();
+		time();
+	});
+});
+
+function mailsend(){
+	$.ajax({
+	url:"/MailCheck.do",
+	type:"post",		
+	data:{
+		mail:$("#regEmail").val()
+	},
+//		dataType:"json",
+	success:function(msg){
+//			alert(msg);
+//			var newCode=JSON.stringify(msg.Code);
+		$("#CodeNow").val(msg);
+	}
+});
+}
+
+$(function(){
+	$("#code").blur(mailcheck);
+});
+
+function mailcheck() {
+	var CodeNow = $("#CodeNow").val();
+	var Code=$("#code").val();
+//		alert(Code);
+//		alert(CodeNow);
+	if (CodeNow==Code && Code!=null && Code!="") {
+		$("#codeMsg").html("<font color='green'>验证成功!</font>");
+		$("#formsub").attr('disabled',false);
+	}else{
+		$("#codeMsg").html("<font color='red'>验证失败!</font>");
+	}
+	
+}
+
+var count = 60;
+function time(){
+	if(count==0){
+		$("#CodeNow").val("");
+		$("#codeBtn").attr('disabled',false);
+		$("#codeBtn").text("发送验证码");
+		 count = 60;
+		return;
+	}else{
+		
+		$("#codeBtn").attr('disabled',true);
+		$("#codeBtn").text("重新发送"+count+"s");
+		count--;
+	}
+setTimeout(function () {
+	time()
+},1000)	
+		
+}
+
+
+
+$(function(){
+	$("#findSubBtn").attr('disabled',true);
+	$("#codeBtnNew").click(function () {
+		mailsendnew();
+		timeNew();
+	});
+});
+
+function mailsendnew(){
+	$.ajax({
+	url:"/MailCheck.do",
+	type:"post",		
+	data:{
+		mail:$("#loginEmailNew").val()
+	},
+//		dataType:"json",
+	success:function(msg){
+//			alert(msg);
+//			var newCode=JSON.stringify(msg.Code);
+		$("#CodeNowNew").val(msg);
+	}
+});
+}
+
+$(function(){
+	$("#codeNew").blur(mailcheckNew);
+});
+
+function mailcheckNew() {
+	var CodeNowNew = $("#CodeNowNew").val();
+	var CodeNew=$("#codeNew").val();
+//		alert(Code);
+//		alert(CodeNow);
+	if (CodeNowNew==CodeNew && CodeNew!=null && CodeNew!="") {
+		$("#codeMsgNew").html("<font color='green'>验证成功!</font>");
+		$("#findSubBtn").attr('disabled',false);
+	}else{
+		$("#codeMsgNew").html("<font color='red'>验证失败!</font>");
+	}
+	
+}
+
+var countNew = 60;
+function timeNew(){
+	if(count==0){
+		$("#CodeNowNew").val("");
+		$("#codeBtnNew").attr('disabled',false);
+		$("#codeBtnNew").text("发送验证码");
+		 countNew = 60;
+		return;
+	}else{
+		
+		$("#codeBtnNew").attr('disabled',true);
+		$("#codeBtnNew").text("重新发送"+count+"s");
+		count--;
+	}
+setTimeout(function () {
+	time()
+},1000)	
+		
+}

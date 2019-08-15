@@ -8,5 +8,6 @@ public interface UserService {
 
 	User SelectByAccounts(String accounts);
     User SelectById(int id);
-	
+	void add(User user);
+	String sendEmail(String email);
 }
