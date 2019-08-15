@@ -77,7 +77,7 @@ public class LoginController {
 	protected void usersCheck(String user, HttpServletResponse resp)  {
 
 		boolean isExist;
-
+        System.out.println(user);
 		User selectByAccounts = userService.SelectByAccounts(user);
 
 		if(selectByAccounts ==null) {

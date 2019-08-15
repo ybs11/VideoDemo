@@ -20,7 +20,7 @@ public class UserForegroundService implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 	
-	@Cacheable("SELECT_ACCOUNTS_USER")
+	
 	public User SelectByAccounts(String accounts) {
 		UserExample example = new UserExample();
 		Criteria criteria = example.createCriteria();
@@ -33,7 +33,7 @@ public class UserForegroundService implements UserService{
 		return null;
 	}
 
-	@Cacheable("SELECT_USERID")
+	
 	public User SelectById(int id) {
 		User user = userMapper.selectByPrimaryKey(id);
 		return user;
