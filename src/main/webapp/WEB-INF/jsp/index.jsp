@@ -45,7 +45,7 @@
 			<c:if test="${not empty user.accounts  }">
 				<div id="userAccount" style="float: right">
 					<a href="/loginOut.do">退出</a> <a
-						href="/foreground/PersonalCenter.jsp">
+						href="/foreground/PersonalCenter.do">
 						${user.accounts}</a>
 				</div>
 			</c:if>
@@ -226,6 +226,38 @@
 		<div class="record">智游教育 © 豫ICP备17000832号-1 河南智游臻龙教育科技有限公司</div>
 	</footer>
 
+	<!--找回密码-->
+	<div class="mask hidden" id="findPassword">
+		<div class="mask_content">
+			<div class="mask_content_header">
+				<img src="/static/z/logo.png" alt="" class="ma">
+			</div>
+			<div class="mask_content_body">
+				<form id="passwordForm" action="/updatePassword.do">
+					<h3>找回密码</h3>
+					<input id="loginEmailNew" placeholder="请输入邮箱" name="email"
+						type="email"> 
+					
+					 <input type="text" placeholder="请输入邮箱内的验证码"
+							id="codeNew"> 
+					<input type="hidden" id="CodeNowNew">
+					<div id="codeMsgNew"></div>
+					<button type="button" id="codeBtnNew">发送验证码</button>
+					
+					<input id="newLoginPassword"
+					placeholder="请输入新密码" name="password" type="password">
+					
+					<div id="msgFind">&nbsp;</div>
+					<input id="findSubBtn"  value="提    交" type="submit">
+				</form>
+			</div>
+			<div class="mask_content_footer">
+				<span id="find_close">关 闭</span>
+			</div>
+		</div>
+	</div>
+		<!-- ************************************************************************************* -->
+
 
 	<!--用户登录-->
 	<div class="mask hidden" id="login">
@@ -239,11 +271,12 @@
 					<input id="loginEmail" placeholder="请输入邮箱" name="email"
 						type="email"> <input id="loginPassword"
 						placeholder="请输入密码" name="password" type="password">
+					
 					<div id="forget">
-						<a
-							href="">忘记密码？</a>
+						<a href="javascript:void(0)"  id="forgetPass">忘记密码？</a>
 					</div>
-					<input onclick="return commitLogin()" value="登　录" type="submit">
+					<div id="msgUser">&nbsp;</div>
+					<input id="userSubBtn" onclick="return commitLogin()" value="登　录" type="submit">
 				</form>
 			</div>
 			<div class="mask_content_footer">
@@ -297,6 +330,12 @@
 						name="password" type="password"> <input id="regPswAgain"
 						placeholder="请再次输入密码" name="psw_again" type="password"><span
 						id="passMsg"></span>
+					
+					  <input  type="text" placeholder="请输入邮箱内的验证码"
+								id="code"> <input type="hidden" id="CodeNow">
+							<div id="codeMsg"></div>
+					  <button type="button" id="codeBtn" >发送验证码</button>
+					
 					<div id="yzm" class="form-inline">
 						<input name="yzm" style="width: 45%; display: inline-block;"
 							type="text">
@@ -308,7 +347,7 @@
 								style="cursor: pointer;">您的浏览器版本不支持canvas</canvas>
 						</div>
 					</div>
-					<input onclick="return commitRegForm();" value="注　册" type="submit">
+					<input id="formsub"  onclick="return commitRegForm();" value="注　册" type="submit">
 				</form>
 			</div>
 			<div class="mask_content_footer">
@@ -356,6 +395,19 @@
 			});
 		});
 
+		
+		$(document).ready(function() {
+			$("#find_close").click(function() {
+				$("#findPassword").toggle();
+			});
+		});
+		
+		$(document).ready(function() {
+			$("#forgetPass").click(function() {
+				$("#login").toggle();
+				$("#findPassword").toggle();
+			});
+		});
 		$(function() {
 			$("#adminSubBtn").attr('disabled', true);
 			$("input[name='accounts']").blur(accountsCheck);
@@ -384,7 +436,33 @@
 		}
 		
 
+		$(function() {
+			$("#userSubBtn").attr('disabled', true);
+			$("#loginEmail").blur(UserCheck);
+			$("#loginPassword").blur(UserCheck);
+			$("#userSubBtn").click(UserCheck);
+		});
 		
+		function UserCheck() {
+
+			$.ajax({
+				url : "${pageContext.request.contextPath}/userCheck.do",
+				type : "post",
+				data : {
+					user : $("#loginEmail").val()
+				},
+				dataType : "json",
+				success : function(msg) {
+					if (msg.isSuccess) {
+						$("#userSubBtn").attr('disabled', false);
+						$("#msgUser").html("<font color='green'>账号正确!</font>");
+					} else {
+						$("#msgUser").html("<font color='red'>账号未被注册!</font>");
+
+					}
+				}
+			});
+		}
 	</script>
 
 

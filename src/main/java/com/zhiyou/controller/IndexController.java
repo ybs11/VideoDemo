@@ -12,4 +12,10 @@ public class IndexController {
 		
 		return"index";
 	}
+	
+	@RequestMapping("/foreground/PersonalCenter.do")
+	public String personalCenter() {
+		return "/personalCenter/PersonalCenter";
+		
+	}
 }

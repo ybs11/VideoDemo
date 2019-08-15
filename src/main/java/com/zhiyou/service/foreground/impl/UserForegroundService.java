@@ -1,6 +1,7 @@
 package com.zhiyou.service.foreground.impl;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import com.zhiyou.foreground.service.UserService;
 import com.zhiyou.model.User;
 import com.zhiyou.model.UserExample;
 import com.zhiyou.model.UserExample.Criteria;
+import com.zhiyou.utils.MailUtil;
 
 @Service
 public class UserForegroundService implements UserService{
@@ -32,6 +34,27 @@ public class UserForegroundService implements UserService{
 	public User SelectById(int id) {
 		User user = userMapper.selectByPrimaryKey(id);
 		return user;
+	}
+
+	@Override
+	public void add(User user) {
+		int insertSelective = userMapper.insertSelective(user);
+		
+	}
+
+	@Override
+	public String sendEmail(String email) {
+		
+		String str="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		StringBuilder code=new StringBuilder(4);
+		for(int i=0;i<4;i++)
+		{
+		     char ch=str.charAt(new Random().nextInt(str.length()));
+		     code.append(ch);
+		}
+		String codeString = code.toString();
+		MailUtil.setMain(email,codeString );
+		return codeString;
 	}
 
 }

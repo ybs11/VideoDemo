@@ -1,5 +1,5 @@
 
-/*椤靛ご*/
+/*妞ら潧銇�*/
 
 header {
     border-bottom: 1px solid #e6e6e6;
@@ -41,7 +41,7 @@ header .container .color_e4 {
 }
 
 
-/*瀵艰埅鏍�*/
+/*鐎佃壈鍩呴弽锟�*/
 
 .text_13 {
     font-size: 12.5px;
@@ -127,10 +127,10 @@ nav #nav_down li a:hover {
     color: #e5585e;
 }
 
-/*banner鍥�*/
+/*banner閸ワ拷*/
 .index-banner{
     height: 460px;
-    background: url(/VideoSSM/static/z/banner.jpg) center no-repeat;
+    background: url(/static/z/banner.jpg) center no-repeat;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -143,7 +143,7 @@ nav #nav_down li a:hover {
     background-size: cover;
 }
 
-/*妯″潡鍖栬绋�*/
+/*濡�虫健閸栨牞顕崇粙锟�*/
 .course .container{
     width: 1160px;
     margin: 0 auto;
@@ -196,7 +196,7 @@ nav #nav_down li a:hover {
     float: right;
 }
 
-/*璇曞惉*/
+/*鐠囨洖鎯�*/
 .audition{
     width: 245px;
     margin: 0 auto;
@@ -216,7 +216,7 @@ nav #nav_down li a:hover {
     color: white;
 }
 
-/*form琛ㄥ崟鐢宠*/
+/*form鐞涖劌宕熼悽瀹狀嚞*/
 .form_area {
     background-color: #f1f1f1;
     padding-top: 30px;
@@ -299,7 +299,7 @@ nav #nav_down li a:hover {
     left: 725px;
     top: -23px;
 }
-/*椤佃剼*/
+/*妞や絻鍓�*/
 
 footer {
     /*height: 415px;*/
@@ -342,19 +342,19 @@ footer h3 {
 
 footer>ul>li li {
     margin-left: 10px;
-    list-style-image: url(/VideoSSM/static/z/q.png);
+    list-style-image: url(/static/z/q.png);
 }
 
 #foo_icon li:nth-of-type(1) {
-    list-style-image: url(/VideoSSM/static/z/footer1.png);
+    list-style-image: url(/static/z/footer1.png);
 }
 
 #foo_icon li:nth-of-type(2) {
-    list-style-image: url(/VideoSSM/static/z/footer2.png);
+    list-style-image: url(/static/z/footer2.png);
 }
 
 #foo_icon li:nth-of-type(3) {
-    list-style-image: url(/VideoSSM/static/z/footer3.png);
+    list-style-image: url(/static/z/footer3.png);
 }
 
 #foo_icon li:nth-of-type(4) {
@@ -410,7 +410,7 @@ footer .record{
     margin-top: 15px;
 }
 
-/*棣栭〉鐧诲綍娉ㄥ唽寮瑰嚭妗�*/
+/*妫ｆ牠銆夐惂璇茬秿濞夈劌鍞藉鐟板毉濡楋拷*/
 .hidden {
     display: none;
 }
@@ -459,12 +459,12 @@ footer .record{
 }
 
 .mask_content_body input[type=email]{
-    background-image: url(/VideoSSM/static/z/user.png);
+    background-image: url(/static/z/user.png);
     background-repeat: no-repeat;
     background-position: 8px center;
 }
 .mask_content_body input[type=password]{
-    background-image: url(/VideoSSM/static/z/password.png);
+    background-image: url(/static/z/password.png);
     background-repeat: no-repeat;
     background-position: 8px center;
 }
@@ -492,7 +492,7 @@ footer .record{
 }
 
 
-/*courseDetails椤甸潰鏍峰紡*/
+/*courseDetails妞ょ敻娼伴弽宄扮础*/
 .mian-nav{
     height: 80px;
     line-height: 80px;
@@ -563,7 +563,7 @@ footer .record{
     font-weight: bold;
 }
 
-/*璇剧▼浠嬬粛*/
+/*鐠囧墽鈻兼禒瀣矝*/
 .kcjs {
     padding: 30px 0;
     border-bottom: 1px solid #e7e7e7;
@@ -579,7 +579,7 @@ footer .record{
     line-height: 24px;
 }
 
-/*鐩綍*/
+/*閻╊喖缍�*/
 .catalog{
     padding-top: 10px;
     padding-bottom: 30px;
@@ -658,16 +658,16 @@ footer .record{
     float: left;
 }
 .catalog .paging .prev{
-    background: url(/VideoSSM/static/z/left-arrow.png) center no-repeat;
+    background: url(/static/z/left-arrow.png) center no-repeat;
     float: left;
 }
 .catalog .paging .next{
-    background: url(/VideoSSM/static/z/right-arrow.png) center no-repeat;
+    background: url(/static/z/right-arrow.png) center no-repeat;
     float: right;
 }
 
 
-/*courseList椤甸潰鏍峰紡*/
+/*courseList妞ょ敻娼伴弽宄扮础*/
 .classify{
     padding-bottom: 50px;
 }
@@ -765,11 +765,11 @@ footer .record{
     float: left;
 }
 .classify .paging .prev{
-    background: url(/VideoSSM/static/z//left-arrow.png) center no-repeat;
+    background: url(/static/z//left-arrow.png) center no-repeat;
     float: left;
 }
 .classify .paging .next{
-    background: url(/VideoSSM/static/z/right-arrow.png) center no-repeat;
+    background: url(/static/z/right-arrow.png) center no-repeat;
     float: right;
 }
 
