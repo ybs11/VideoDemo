@@ -3,6 +3,7 @@ package com.zhiyou.person.service;
 import java.util.List;
 
 import com.zhiyou.model.User;
+import com.zhiyou.model.UserExample;
 
 public interface UserService {
 
@@ -10,7 +11,5 @@ public interface UserService {
 	void delete(int id);
 	void update(User user);
 
-	User SelectByAccounts(String accounts);
-    User SelectById(int id);
-	List<User> SelectAll();
+	List<User> SelectAll(UserExample example);
 }

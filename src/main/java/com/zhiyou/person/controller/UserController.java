@@ -59,7 +59,7 @@ public class UserController {
 		user.setPassword(password);
 		user.setImgurl(imgurl);
 		user.setCreatetime(createtime);
-		userService.update(user);
+		userService.add(user);;
 		req.getSession().setAttribute("user", user);
 		return "/foreground/PersonalCenter";
 		
