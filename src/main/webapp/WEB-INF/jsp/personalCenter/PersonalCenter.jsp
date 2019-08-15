@@ -13,9 +13,9 @@
     <meta name="author" content="尚忠祥">
     
 <!--<base href="http://localhost:8080/Voids/">--><base href=".">
-    <link rel="stylesheet" href="/VideoSSM/static/z/base.css">
-    <link rel="stylesheet" href="/VideoSSM/static/z/profile.css">
-    <link rel="icon" href="http://localhost:8080/VideoSSM/static/z/favicon.png" type="image/png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/z/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/z/profile.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/static/z/favicon.png" type="image/png">
     <title>在线公开课-智游教育|java|大数据|HTML5|python|UI|PHP视频教程</title>
 </head>
 
@@ -24,7 +24,7 @@
 
 <header>
 	<div class="container top_bar clearfix">
-		<img src="/VideoSSM/static/z/logo.png" alt="智游">
+		<img src="${pageContext.request.contextPath}/static/z/logo.png" alt="智游">
 		<div id="tele">
 			<span>4006-371-555</span>
 			<span>0371-88888598</span>
@@ -33,9 +33,9 @@
 	<menu>
 		<div class="container clearfix">
 			<ul class="clearfix f_left">
-				<li><a href="/VideoSSM/index.jsp">首页</a></li>
+				<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 				
-				<li class="menu_active"><a href="/VideoSSM/foreground/PersonalCenter.jsp">个人中心</a></li>
+				<li class="menu_active"><a href="${pageContext.request.contextPath}/foreground/PersonalCenter.do">个人中心</a></li>
 			</ul>
 			
 			<div id="user_bar">
@@ -47,7 +47,7 @@
 					
 
 				</a>
-				<a  id="lay_out" href="/VideoSSM/loginOut.do">退出</a>
+				<a  id="lay_out" href="${pageContext.request.contextPath}/loginOut.do">退出</a>
 			</div>
 		</div>
 	</menu>
@@ -58,11 +58,11 @@
             <h2>我的资料</h2>
             <div id="profile_tab">
                 <ul class="profile_tab_header f_left clearfix">
-                    <li><a href="/VideoSSM/userUpadteShow.do">更改资料</a></li>
+                    <li><a href="${pageContext.request.contextPath}/userUpadteShow">更改资料</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li><a href="/VideoSSM/foreground/AvatarUpload.jsp">更改头像</a></li>
+                    <li><a href="${pageContext.request.contextPath}/AvatarUpload">更改头像</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li><a href="/VideoSSM/foreground/PasswordUpdate.jsp">密码安全</a></li>
+                    <li><a href="${pageContext.request.contextPath}/PasswordUpdate">密码安全</a></li>
                 </ul>
                 <div class="proflle_tab_body">
                     
@@ -98,9 +98,9 @@
     <footer>
         <div class="container">
             <ul>
-                <li><img src="/VideoSSM/static/z/footer_logo.png" alt="" id="foot_logo"></li>
+                <li><img src="${pageContext.request.contextPath}/static/z/footer_logo.png" alt="" id="foot_logo"></li>
                 <li>版权所有：智游3G教育　　　©&nbsp;www.zhiyou100.com</li>
-                <li><img src="/VideoSSM/static/z/a.png" alt="" id="wxgzh"></li>
+                <li><img src="${pageContext.request.contextPath}/static/z/a.png" alt="" id="wxgzh"></li>
             </ul>
         </div>
     </footer>

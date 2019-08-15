@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import com.zhiyou.dao.UserMapper;
 import com.zhiyou.model.User;
 import com.zhiyou.model.UserExample;
-import com.zhiyou.person.service.UserService;
+import com.zhiyou.person.service.YUserService;
 
 
 @Service
-public class UserServiceImpl implements UserService{
+public class YUserServiceImpl implements YUserService{
 
 	@Autowired
 	UserMapper userMapper;

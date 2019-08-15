@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.zhiyou.model.User;
-import com.zhiyou.person.service.UserService;
+import com.zhiyou.person.service.YUserService;
 import com.zhiyou.utils.MD5Utils;
 
 @Controller
-public class UserController {
+public class YUserController {
 
 	@Autowired
-	UserService userService;	
+	YUserService userService;	
 	/**
 	 * 
 	 * @param req
@@ -28,16 +28,22 @@ public class UserController {
 	 * 28)进入修改资料
 	 */
 	
-	@RequestMapping("/userUpadteShow.do")
+	@RequestMapping("/userUpadteShow")
 	public String userUpadteShow(HttpServletRequest req) {
-		/*
-		 * User user =(User) req.getSession().getAttribute("user"); String address =
-		 * user.getAddress(); String[] split = address.split("-"); String prov =
-		 * split[0]; String city = split[1]; req.setAttribute("prov", prov);
-		 * req.setAttribute("city", city);
-		 */
-		return "/foreground/UserUpdate";
 		
+		return "/personalCenter/UserUpdate";
+		
+	}
+	//进入更改头像
+	@RequestMapping("/AvatarUpload")
+	public String AvatarUpload(HttpServletRequest req) {
+		return "/personalCenter/AvatarUpload";
+		
+	}
+	//密码安全
+	@RequestMapping("/PasswordUpdate")
+	public String PasswordUpdate(HttpServletRequest req) {
+		return "/personalCenter/PasswordUpdate";
 	}
 	
 	/**
@@ -47,17 +53,19 @@ public class UserController {
 	 * @return 29)提交修改资料
 	 * 
 	 */
-	@RequestMapping("/userUpadte.do")
+	@RequestMapping("/userUpadte")
 	public String userUpadte(User user,HttpServletRequest req) {
-		//System.out.println(user);
 		User userOriginal =(User) req.getSession().getAttribute("user");
-		String phone = userOriginal.getPhone();
-		String password = userOriginal.getPassword();
-		String imgurl = userOriginal.getImgurl();
+		int id=userOriginal.getId();
+		String nickname=userOriginal.getNickname();
+		String sex=userOriginal.getSex();
+		String birthday=userOriginal.getBirthday();
+		String address=userOriginal.getAddress();
 		Timestamp createtime = (Timestamp) userOriginal.getCreatetime();
-		user.setPhone(phone);
-		user.setPassword(password);
-		user.setImgurl(imgurl);
+		user.setNickname(nickname);
+		user.setSex(sex);
+		user.setBirthday(birthday);
+		user.setAddress(address);
 		user.setCreatetime(createtime);
 		userService.add(user);;
 		req.getSession().setAttribute("user", user);
@@ -73,7 +81,7 @@ public class UserController {
 	 * 
 	 * 30)提交修改头像
 	 */
-	@RequestMapping("/uploadAvatar.do")
+	@RequestMapping("/uploadAvatar")
 	public String uploadAvatar(MultipartFile imageFile, HttpServletRequest req) {
 //		System.out.println(imageFile);
 		System.out.println(imageFile.getContentType());
@@ -83,7 +91,7 @@ public class UserController {
 		String imageName = System.currentTimeMillis()+imageFile.getOriginalFilename();
 		String realPath = req.getSession().getServletContext().getRealPath("static/z/");
 		String name = realPath +imageName;
-		String imgUrl ="/VideoSSM/static/z/"+imageName;
+		String imgUrl ="${pageContext.request.contextPath}/static/z/"+imageName;
 		User user =(User) req.getSession().getAttribute("user");
 		user.setImgurl(imgUrl);
 		userService.update(user);
@@ -97,10 +105,10 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return "/foreground/AvatarUpload";
+		return "/personalCenter/AvatarUpload";
 		}
 		req.setAttribute("msg", "头像格式不符");
-		return "/foreground/AvatarUpload";
+		return "/personalCenter/AvatarUpload";
 		
 	}
 	/**
@@ -111,7 +119,7 @@ public class UserController {
 	 * 
 	 * 验证原密码是否正确
 	 */
-	@RequestMapping("/originalPasswordCheck.do")
+	@RequestMapping("/originalPasswordCheck")
 	public void originalPasswordCheck(String originalPassword, HttpServletRequest req,HttpServletResponse resp) {
 		User user =(User) req.getSession().getAttribute("user");
 		String md5 = MD5Utils.md5(originalPassword);
@@ -129,10 +137,8 @@ public class UserController {
 		}
 		
 	}
-	@RequestMapping("/rePasswordCheck.do")
+	@RequestMapping("/rePasswordCheck")
 	public void rePasswordCheck(String newPassword,String rePassword, HttpServletRequest req,HttpServletResponse resp) {
-//		System.out.println("newPassword:"+newPassword);
-//		System.out.println("rePassword:"+rePassword);
 		boolean isExist;
 		if(rePassword.equals(newPassword)&& newPassword != "" ) {
 			isExist=true;
@@ -154,7 +160,7 @@ public class UserController {
 	 * @return
 	 * 31)修改密码
 	 */
-	@RequestMapping("/passwordUpdate.do")
+	@RequestMapping("/passwordUpdate")
 	public String passwordUpdate(String newPassword,HttpServletRequest req) {
 		User user =(User) req.getSession().getAttribute("user");
 		String md5 = MD5Utils.md5(newPassword);
