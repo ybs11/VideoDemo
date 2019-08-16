@@ -18,10 +18,10 @@
 	content="Web前端视频教程,大数据视频教程,HTML5视频教程,UI视频教程,PHP视频教程,java视频教程,python基础教程">
 <meta name="description"
 	content="智游教育在线课程视频,为您提供java,python,HTML5,UI,PHP,大数据等学科经典视频教程在线浏览学习,精细化知识点解析,深入浅出,想学不会都难,智游教育,学习成就梦想！">
-<link rel="stylesheet" href="/VideoSSM/static/z/base.css">
-<link rel="stylesheet" href="/VideoSSM/static/z/profile.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/z/base.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/z/profile.css">
 <link rel="icon"
-	href="http://localhost:8080/VideoSSM/static/z/favicon.png"
+	href="${pageContext.request.contextPath}/static/z/favicon.png"
 	type="image/png">
 <title>在线公开课-智游教育|java|大数据|HTML5|python|UI|PHP视频教程</title>
 
@@ -34,7 +34,7 @@
 
 	<header>
 	<div class="container top_bar clearfix">
-		<img src="/VideoSSM/static/z/logo.png" alt="智游">
+		<img src="${pageContext.request.contextPath}/static/z/logo.png" alt="智游">
 		<div id="tele">
 			<span>4006-371-555</span> <span>0371-88888598</span>
 		</div>
@@ -42,9 +42,9 @@
 	<menu>
 		<div class="container clearfix">
 			<ul class="clearfix f_left">
-				<li><a href="/VideoSSM/index.jsp">首页</a></li>
+				<li><a href="${pageContext.request.contextPath}/index">首页</a></li>
 
-				<li class="menu_active"><a href="/VideoSSM/foreground/PersonalCenter.jsp">个人中心</a></li>
+				<li class="menu_active"><a href="${pageContext.request.contextPath}/foreground/PersonalCenter.do">个人中心</a></li>
 			</ul>
 
 			<div id="user_bar">
@@ -53,7 +53,7 @@
 
 
 
-				</a> <a href="/VideoSSM/loginOut.do">退出</a>
+				</a> <a href="${pageContext.request.contextPath}/loginOut.do">退出</a>
 			</div>
 		</div>
 	</menu>
@@ -64,11 +64,11 @@
 		<h2>我的资料</h2>
 		<div id="profile_tab">
 			<ul class="profile_tab_header f_left clearfix">
-				<li><a href="/VideoSSM/userUpadteShow.do">更改资料</a></li>
+				<li><a href="${pageContext.request.contextPath}/userUpadteShow">更改资料</a></li>
 				<li class="profile_tab_line">|</li>
-				<li><a href="/VideoSSM/foreground/AvatarUpload.jsp">更改头像</a></li>
+				<li><a href="${pageContext.request.contextPath}/AvatarUpload">更改头像</a></li>
 				<li class="profile_tab_line">|</li>
-				<li><a href="/VideoSSM/foreground/PasswordUpdate.jsp">密码安全</a></li>
+				<li><a href="${pageContext.request.contextPath}/PasswordUpdate">密码安全</a></li>
 			</ul>
 			<div class="proflle_tab_body">
 				<div class="proflle_tab_workplace clearfix">
@@ -80,7 +80,7 @@
 
 					</div>
 					<div class="profile_ifo_area">
-						<form action="/VideoSSM/userUpadte.do">
+						<form action="${pageContext.request.contextPath}/userUpadte">
 							<input name="id" value="${user.id}" type="hidden">
 							<div class="form_group">
 								<span class="dd">昵 称：</span><input name="nickname" type="text"
@@ -224,7 +224,7 @@
 							</div>
 							<div class="form_submit dd">
 								<input onclick="return commitForm();" value="保　存" type="submit">
-								<a href="/VideoSSM/foreground/UserUpdate.jsp">重置</a>
+								<a href="${pageContext.request.contextPath}/userUpadteShow">重置</a>
 							</div>
 
 						</form>
@@ -240,19 +240,19 @@
 	<footer>
 	<div class="container">
 		<ul>
-			<li><img src="/VideoSSM/static/z/footer_logo.png" alt=""
+			<li><img src="${pageContext.request.contextPath}/static/z/footer_logo.png" alt=""
 				id="foot_logo"></li>
 			<li>版权所有：智游3G教育 ©&nbsp;www.zhiyou100.com</li>
-			<li><img src="/VideoSSM/static/z/a.png" alt="" id="wxgzh"></li>
+			<li><img src="${pageContext.request.contextPath}/static/z/a.png" alt="" id="wxgzh"></li>
 		</ul>
 	</div>
 	</footer>
 
 
-	<script src="/VideoSSM/static/z/jquery-1.js"></script>
-	<script src="/VideoSSM/static/z/gVerify.js"></script>
-	<script src="/VideoSSM/static/z/index.js"></script>
-	<script src="/VideoSSM/static/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/static/z/jquery-1.js"></script>
+	<script src="${pageContext.request.contextPath}/static/z/gVerify.js"></script>
+	<script src="${pageContext.request.contextPath}/static/z/index.js"></script>
+	<script src="${pageContext.request.contextPath}/static/js/jquery.js"></script>
 	<script type="text/javascript">
 // 		$(function() {
 

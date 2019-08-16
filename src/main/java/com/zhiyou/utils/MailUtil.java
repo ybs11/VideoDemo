@@ -11,19 +11,19 @@ import javax.mail.internet.MimeMessage;
 public class MailUtil {
 	
 	public static void setMain(String main,String name){
-		//main  ÊÕ¼şÓÊÏäµØÖ·  
-		//name  Ëæ»úÑéÖ¤Âë
+		//main  æ”¶ä»¶é‚®ç®±åœ°å€  
+		//name  éšæœºéªŒè¯ç 
 		
 		
 		String myEmailAccount = "bzm0531@163.com";
 	    String myEmailPassword = "bianziming531";
 
 	    String myEmailSMTPHost = "smtp.163.com";
-		  // 1. ´´½¨²ÎÊıÅäÖÃ, ÓÃÓÚÁ¬½ÓÓÊ¼ş·şÎñÆ÷µÄ²ÎÊıÅäÖÃ
-        Properties props = new Properties();                    // ²ÎÊıÅäÖÃ
-        props.setProperty("mail.transport.protocol", "smtp");   // Ê¹ÓÃµÄĞ­Òé£¨JavaMail¹æ·¶ÒªÇó£©
-        props.setProperty("mail.smtp.host", myEmailSMTPHost);   // ·¢¼şÈËµÄÓÊÏäµÄ SMTP ·şÎñÆ÷µØÖ·
-        props.setProperty("mail.smtp.auth", "true");            // ĞèÒªÇëÇóÈÏÖ¤
+		  // 1. åˆ›å»ºå‚æ•°é…ç½®, ç”¨äºè¿æ¥é‚®ä»¶æœåŠ¡å™¨çš„å‚æ•°é…ç½®
+        Properties props = new Properties();                    // å‚æ•°é…ç½®
+        props.setProperty("mail.transport.protocol", "smtp");   // ä½¿ç”¨çš„åè®®ï¼ˆJavaMailè§„èŒƒè¦æ±‚ï¼‰
+        props.setProperty("mail.smtp.host", myEmailSMTPHost);   // å‘ä»¶äººçš„é‚®ç®±çš„ SMTP æœåŠ¡å™¨åœ°å€
+        props.setProperty("mail.smtp.auth", "true");            // éœ€è¦è¯·æ±‚è®¤è¯
 
         final String smtpPort = "465";
         props.setProperty("mail.smtp.port", smtpPort);
@@ -32,23 +32,23 @@ public class MailUtil {
         props.setProperty("mail.smtp.socketFactory.port", smtpPort);
         
 
-        // 2. ¸ù¾İÅäÖÃ´´½¨»á»°¶ÔÏó, ÓÃÓÚºÍÓÊ¼ş·şÎñÆ÷½»»¥
+        // 2. æ ¹æ®é…ç½®åˆ›å»ºä¼šè¯å¯¹è±¡, ç”¨äºå’Œé‚®ä»¶æœåŠ¡å™¨äº¤äº’
         Session session = Session.getInstance(props);
-//        session.setDebug(true);                                 // ÉèÖÃÎªdebugÄ£Ê½, ¿ÉÒÔ²é¿´ÏêÏ¸µÄ·¢ËÍ log
+//        session.setDebug(true);                                 // è®¾ç½®ä¸ºdebugæ¨¡å¼, å¯ä»¥æŸ¥çœ‹è¯¦ç»†çš„å‘é€ log
 
-        // 3. ´´½¨Ò»·âÓÊ¼ş
+        // 3. åˆ›å»ºä¸€å°é‚®ä»¶
         MimeMessage message = createMimeMessage(session, myEmailAccount, main,name);
 
-        // 4. ¸ù¾İ Session »ñÈ¡ÓÊ¼ş´«Êä¶ÔÏó
+        // 4. æ ¹æ® Session è·å–é‚®ä»¶ä¼ è¾“å¯¹è±¡
         Transport transport;
 		try {
 			transport = session.getTransport();
 		        transport.connect(myEmailAccount, myEmailPassword);
 
-	        // 6. ·¢ËÍÓÊ¼ş, ·¢µ½ËùÓĞµÄÊÕ¼şµØÖ·, message.getAllRecipients() »ñÈ¡µ½µÄÊÇÔÚ´´½¨ÓÊ¼ş¶ÔÏóÊ±Ìí¼ÓµÄËùÓĞÊÕ¼şÈË, ³­ËÍÈË, ÃÜËÍÈË
+	        // 6. å‘é€é‚®ä»¶, å‘åˆ°æ‰€æœ‰çš„æ”¶ä»¶åœ°å€, message.getAllRecipients() è·å–åˆ°çš„æ˜¯åœ¨åˆ›å»ºé‚®ä»¶å¯¹è±¡æ—¶æ·»åŠ çš„æ‰€æœ‰æ”¶ä»¶äºº, æŠ„é€äºº, å¯†é€äºº
 	        transport.sendMessage(message, message.getAllRecipients());
 
-	        // 7. ¹Ø±ÕÁ¬½Ó
+	        // 7. å…³é—­è¿æ¥
 	        transport.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -60,26 +60,26 @@ public class MailUtil {
 	}
 	
 	   /**
-     * ´´½¨Ò»·âÖ»°üº¬ÎÄ±¾µÄ¼òµ¥ÓÊ¼ş
+     * åˆ›å»ºä¸€å°åªåŒ…å«æ–‡æœ¬çš„ç®€å•é‚®ä»¶
      *
-     * @param session ºÍ·şÎñÆ÷½»»¥µÄ»á»°
-     * @param sendMail ·¢¼şÈËÓÊÏä
-     * @param receiveMail ÊÕ¼şÈËÓÊÏä
+     * @param session å’ŒæœåŠ¡å™¨äº¤äº’çš„ä¼šè¯
+     * @param sendMail å‘ä»¶äººé‚®ç®±
+     * @param receiveMail æ”¶ä»¶äººé‚®ç®±
      * @return
      * @throws Exception
      */
     public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,String name){
-        // 1. ´´½¨Ò»·âÓÊ¼ş
+        // 1. åˆ›å»ºä¸€å°é‚®ä»¶
         MimeMessage message = new MimeMessage(session);
 
-        // 2. From: ·¢¼şÈË£¨êÇ³ÆÓĞ¹ã¸æÏÓÒÉ£¬±ÜÃâ±»ÓÊ¼ş·şÎñÆ÷ÎóÈÏÎªÊÇÀÄ·¢¹ã¸æÒÔÖÁ·µ»ØÊ§°Ü£¬ÇëĞŞ¸ÄêÇ³Æ£©
+        // 2. From: å‘ä»¶äººï¼ˆæ˜µç§°æœ‰å¹¿å‘Šå«Œç–‘ï¼Œé¿å…è¢«é‚®ä»¶æœåŠ¡å™¨è¯¯è®¤ä¸ºæ˜¯æ»¥å‘å¹¿å‘Šä»¥è‡³è¿”å›å¤±è´¥ï¼Œè¯·ä¿®æ”¹æ˜µç§°ï¼‰
         try {
-			message.setFrom(new InternetAddress("bzm0531@163.com", "ÖÇÓÎ½ÌÓı", "UTF-8"));
-			 // 3. To: ÊÕ¼şÈË£¨¿ÉÒÔÔö¼Ó¶à¸öÊÕ¼şÈË¡¢³­ËÍ¡¢ÃÜËÍ£©
-	        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "ÖÇÓÎ½ÌÓıÓÃ»§", "UTF-8"));
+			message.setFrom(new InternetAddress("bzm0531@163.com", "æ™ºæ¸¸æ•™è‚²", "UTF-8"));
+			 // 3. To: æ”¶ä»¶äººï¼ˆå¯ä»¥å¢åŠ å¤šä¸ªæ”¶ä»¶äººã€æŠ„é€ã€å¯†é€ï¼‰
+	        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "æ™ºæ¸¸æ•™è‚²ç”¨æˆ·", "UTF-8"));
 
-	        // 4. Subject: ÓÊ¼şÖ÷Ìâ£¨±êÌâÓĞ¹ã¸æÏÓÒÉ£¬±ÜÃâ±»ÓÊ¼ş·şÎñÆ÷ÎóÈÏÎªÊÇÀÄ·¢¹ã¸æÒÔÖÁ·µ»ØÊ§°Ü£¬ÇëĞŞ¸Ä±êÌâ£©
-	        message.setSubject("ÖÇÓÎ½ÌÓıÓÃ»§×¢²áÑéÖ¤", "UTF-8");
+	        // 4. Subject: é‚®ä»¶ä¸»é¢˜ï¼ˆæ ‡é¢˜æœ‰å¹¿å‘Šå«Œç–‘ï¼Œé¿å…è¢«é‚®ä»¶æœåŠ¡å™¨è¯¯è®¤ä¸ºæ˜¯æ»¥å‘å¹¿å‘Šä»¥è‡³è¿”å›å¤±è´¥ï¼Œè¯·ä¿®æ”¹æ ‡é¢˜ï¼‰
+	        message.setSubject("æ™ºæ¸¸æ•™è‚²ç”¨æˆ·æ³¨å†ŒéªŒè¯", "UTF-8");
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,16 +87,16 @@ public class MailUtil {
 
        
 
-        // 5. Content: ÓÊ¼şÕıÎÄ£¨¿ÉÒÔÊ¹ÓÃhtml±êÇ©£©£¨ÄÚÈİÓĞ¹ã¸æÏÓÒÉ£¬±ÜÃâ±»ÓÊ¼ş·şÎñÆ÷ÎóÈÏÎªÊÇÀÄ·¢¹ã¸æÒÔÖÁ·µ»ØÊ§°Ü£¬ÇëĞŞ¸Ä·¢ËÍÄÚÈİ£©
+        // 5. Content: é‚®ä»¶æ­£æ–‡ï¼ˆå¯ä»¥ä½¿ç”¨htmlæ ‡ç­¾ï¼‰ï¼ˆå†…å®¹æœ‰å¹¿å‘Šå«Œç–‘ï¼Œé¿å…è¢«é‚®ä»¶æœåŠ¡å™¨è¯¯è®¤ä¸ºæ˜¯æ»¥å‘å¹¿å‘Šä»¥è‡³è¿”å›å¤±è´¥ï¼Œè¯·ä¿®æ”¹å‘é€å†…å®¹ï¼‰
         Date date =new Date();
 		SimpleDateFormat ft = new SimpleDateFormat ("E yyyy.MM.dd  hh:mm:ss a");		 
-        String content="ÄúÓÚ"+ft.format(date)+"×¢²áÖÇÓÎ½ÌÓıÓÃ»§£¬ÄúµÄÑéÖ¤ÂëÎª"+name;
+        String content="æ‚¨äº"+ft.format(date)+"æ³¨å†Œæ™ºæ¸¸æ•™è‚²ç”¨æˆ·ï¼Œæ‚¨çš„éªŒè¯ç ä¸º"+name;
         try {
 			message.setContent(content, "text/html;charset=UTF-8");
-			  // 6. ÉèÖÃ·¢¼şÊ±¼ä
+			  // 6. è®¾ç½®å‘ä»¶æ—¶é—´
 	        message.setSentDate(new Date());
 
-	        // 7. ±£´æÉèÖÃ
+	        // 7. ä¿å­˜è®¾ç½®
 	        message.saveChanges();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -26,8 +26,8 @@ public class CourseForegroundController {
 	public String CourseWithVideoAndSubject(String subjectId,HttpServletRequest req) {
 		List<CourseExtension> list = courseForegroundService.selectIncludeVideoAndSubjectBySubjectId(Integer.valueOf(subjectId));
 		if(list.isEmpty()) {
-			System.out.println("��");
-			req.setAttribute("msg", "ľ�пΣ������");
+			
+			req.setAttribute("msg", "木有课，别点我");
 			return "index";
 		}
 		VideoResult videoResult = new VideoResult();
