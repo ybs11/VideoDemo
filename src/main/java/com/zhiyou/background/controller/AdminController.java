@@ -2,6 +2,8 @@ package com.zhiyou.background.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,40 +11,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zhiyou.background.service.SpeakerService;
-import com.zhiyou.model.Speaker;
+import com.zhiyou.background.service.AdminService;
+import com.zhiyou.model.Admin;
+import com.zhiyou.utils.MD5Utils;
 
 @Controller
-@RequestMapping("/speaker")
-public class SpeakerController {
+@RequestMapping("/admin")
+public class AdminController {
 	
 	@Autowired
-	private SpeakerService speakerService;
+	private AdminService adminService;
 	
 	@RequestMapping("/show.do")
-	public String show(Model model) {
-		List<Speaker> list = speakerService.selectAll();
+	public String show(Model model){
+		List<Admin> list = adminService.selectAll();
 		model.addAttribute("list", list);
-		return "background/BackgroundSpeakerShow";
+		return "background/BackgroundAdminShow";
 	}
 	
-	@RequestMapping("/addSpeakerShow.do")
+	@RequestMapping("/addAdminShow.do")
 	public String addSpeakerShow() {
-		return "background/BackgroundSpeakerAdd";
+		return "background/BackgroundAdminAdd";
 	}
 	
-	@RequestMapping("/addSpeaker.do")
-	public String addSpeaker(Speaker speaker) {
-		speakerService.insert(speaker);
-		return "redirect:show.do";
+	@RequestMapping("/addAdmin.do")
+	public String addSpeaker(HttpServletRequest request,Admin admin) {
+		String password = request.getParameter("password");
+		admin.setPassword(MD5Utils.md5(password));
+		adminService.insert(admin);
+		return "forward:show.do";
 	}
 	
-	@RequestMapping("/delSpeakerById.do")
+	@RequestMapping("/delAdminById.do")
 	@ResponseBody
 	public String delSpeakerById(Integer id) {
 		String msg = "fail";
 		try {
-			speakerService.deleteByPrimaryKey(id);
+			adminService.deleteByPrimaryKey(id);
 			msg = "success";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,21 +64,22 @@ public class SpeakerController {
 		for (int i = 0; i < ss.length; i++) {
 			id[i] = Integer.valueOf(ss[i]);
 		}
-		speakerService.deleteAll(id);
+		adminService.deleteAll(id);
 		return "true";
 	}
 	
-	@RequestMapping(value="/edit.do",method=RequestMethod.POST)
+	@RequestMapping("/edit.do")
 	public String edit(Model model,Integer id) {
-		Speaker speaker = speakerService.selectByPrimaryKey(id);
-		model.addAttribute("speaker", speaker);
-		return "background/BackgroundSpeakerUpdate";
+		Admin admin = adminService.selectByPrimaryKey(id);
+		model.addAttribute("Admin", admin);
+		return "background/BackgroundAdminUpdate";
 	}
 	
-	@RequestMapping(value="/update.do",method=RequestMethod.POST)
-	public String update(Speaker speaker) {
-		speakerService.updateByPrimaryKey(speaker);
+	@RequestMapping("/update.do")
+	public String update(Admin admin) {
+		adminService.updateByPrimaryKey(admin);
 		return "forward:show.do";
-	}	
-
+	}
+	
+	
 }

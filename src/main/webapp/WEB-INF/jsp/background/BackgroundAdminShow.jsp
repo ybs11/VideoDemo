@@ -37,8 +37,9 @@ th {
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
 					<li><a href="/video/show.do">视频管理</a></li>
-					<li class="active"> <a href="/speaker/show.do">主讲人管理</a></li>
+					<li> <a href="/speaker/show.do">主讲人管理</a></li>
 					<li ><a href="/course/list.do">课程管理</a></li>
+					<li class="active"><a href="/admin/show.do">管理员管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
@@ -59,7 +60,7 @@ th {
 
 	<div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px;">
 		<div class="container">
-			<h2>主讲人管理</h2>
+			<h2>管理员管理</h2>
 		</div>
 	</div>
 
@@ -81,9 +82,9 @@ th {
 					<tr class="active">
 						<th><input type="checkbox" id="all" onclick="swapCheck()"></th>
 						<th>序号</th>
-						<th>名称</th>
-						<th>职位</th>
-						<th style="width: 60%">简介</th>
+						<th>用户名</th>
+						<th>是否为超级管理员</th>
+						<th style="width: 30%">备注</th>
 						<th>编辑</th>
 						<th>删除</th>
 					</tr>
@@ -92,13 +93,13 @@ th {
 				
 					<c:forEach items="${list}" var="i">
 						<tr>
-							<td><input type="checkbox" name="check" value="${i.id}"></td>
-							<td>${i.id}</td>
-							<td>${i.speakerName}</td>
-							<td>${i.speakerJob}</td>
-							<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.speakerDesc}</td>
-							<td><a href="${pageContext.request.contextPath}/speaker/edit.do?id=${i.id}">✎</a></td>
-							<td><a id="del" href="javascript:void(0);" onclick="delSpeakerById('#del','${i.id}','${i.speakerName}')">X</a></td>
+							<td><input type="checkbox" name="check" value="${i.adminId}"></td>
+							<td>${i.adminId}</td>
+							<td>${i.accounts}</td>
+							<td>${i.adminIsSuper}</td>
+							<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.adminRemark}</td>
+							<td><a href="${pageContext.request.contextPath}/admin/edit.do?id=${i.adminId}">✎</a></td>
+							<td><a id="del" href="javascript:void(0);" onclick="delAdminById('#del','${i.adminId}','${i.accounts}')">X</a></td>
 						</tr>
 					</c:forEach>
 
@@ -136,16 +137,16 @@ th {
 	
 	<script type="text/javascript">
 		function showAddPage(){
-			location.href="${pageContext.request.contextPath}/speaker/addSpeakerShow.do";
+			location.href="${pageContext.request.contextPath}/admin/addAdminShow.do";
 		}
-		function delSpeakerById(Obj,id,title){
+		function delAdminById(Obj,id,title){
 
 			Confirm.show('温馨提示：', '确定要删除'+title+'么？', {
 				'Delete': {
 					'primary': true,
 					'callback': function() {
 						var param={"id":id};
-						$.post("${pageContext.request.contextPath}/speaker/delSpeakerById.do",param,function(data){
+						$.post("${pageContext.request.contextPath}/admin/delAdminById.do",param,function(data){
 							if(data == "success"){
 								Confirm.show('温馨提示：', '删除成功');
 								$(Obj).parent().parent().remove();
@@ -199,7 +200,7 @@ th {
 					'primary': true,
 					'callback': function() {
 						$.post({
-							url:"${pageContext.request.contextPath}/speaker/deleteAll.do?ids="+ids,
+							url:"${pageContext.request.contextPath}/admin/deleteAll.do?ids="+ids,
 							success:function(data){
 			    				Confirm.show('温馨提示：', '删除成功');
 			    				setTimeout(function(){

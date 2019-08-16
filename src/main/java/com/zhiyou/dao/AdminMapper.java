@@ -27,4 +27,22 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+    
+    //后台
+    void deleteByPrimaryKey2(Integer id);
+    
+    /**
+     * 批量删除
+     * @param ids
+     */
+    void deleteAll2(Integer[] ids);
+
+    void insert2(Admin record);
+
+    Admin selectByPrimaryKey2(Integer id);
+
+    List<Admin> selectAll2();
+
+    void updateByPrimaryKey2(Admin record);
+    
 }
