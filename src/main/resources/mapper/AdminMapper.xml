@@ -208,4 +208,57 @@
       admin_is_super = #{adminIsSuper,jdbcType=INTEGER}
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
+  
+  
+  
+  <!-- 后台 -->
+  <delete id="deleteByPrimaryKey2" parameterType="java.lang.Integer">
+    delete from admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 批量删除 -->
+  <delete id="deleteAll2">
+  	delete from admin where admin_id in
+  	<foreach collection="array" item="ids" separator="," open="(" close=")">
+  		#{ids}
+  	</foreach>
+  </delete>
+  
+  <insert id="insert2" parameterType="com.zhiyou.model.Admin">
+    insert into admin (admin_id, accounts, password, 
+      admin_remark,admin_is_super)
+    values (#{adminId,jdbcType=INTEGER}, #{accounts,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{adminRemark,jdbcType=VARCHAR},#{adminIsSuper,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey2" parameterType="com.zhiyou.model.Admin">
+    update admin
+	<set>
+		<if test="accounts != null">
+			accounts = #{accounts,jdbcType=VARCHAR},
+		</if>
+		<if test="password != null">
+			password = #{password,jdbcType=VARCHAR},
+		</if>
+		<if test="adminRemark != null">
+			admin_remark = #{adminRemark,jdbcType=VARCHAR},
+		</if>
+		<if test="adminIsSuper != null">
+			admin_is_super = #{adminIsSuper,jdbcType=INTEGER},
+		</if>
+	</set>     
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey2" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select admin_id, accounts, admin_is_super, admin_remark,admin_is_super
+    from admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll2" resultMap="BaseResultMap">
+    select admin_id, accounts, password, admin_remark,admin_is_super
+    from admin
+  </select>
+  
+  
+  
 </mapper>

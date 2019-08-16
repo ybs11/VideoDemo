@@ -54,9 +54,9 @@ b {
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
 					<li><a href="/video/show.do">视频管理</a></li>
-					<li class="active"><a href="/speaker/show.do">主讲人管理</a></li>
-					<li><a href="/course/list.do">课程管理
-						</a></li>
+					<li><a href="/speaker/show.do">主讲人管理</a></li>
+					<li><a href="/course/list.do">课程管理</a></li>
+					<li class="active"><a href="/admin/show.do">管理员管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
@@ -77,7 +77,7 @@ b {
 
 
 
-			<h2>修改主讲人</h2>
+			<h2>修改管理员</h2>
 
 		</div>
 	</div>
@@ -86,38 +86,35 @@ b {
 
 	<div class="container" style="margin-top: 20px;">
 
-		<form id="infoForm" class="form-horizontal" action="/speaker/update.do">
+		<form id="infoForm" class="form-horizontal" action="/admin/update.do">
 
-			<input name="id" value="${speaker.id }" type="hidden">
+			<input name="adminId" value="${Admin.adminId }" type="hidden">
+			<input name="adminId" value="${Admin.password }" type="hidden">
 
 			
 
-				<div class="form-group">
+			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">姓名</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="speakerName" id="speakerName"
-						value="${speaker.speakerName }" type="text">
+					<input class="form-control" name="accounts" id="accounts"
+						value="${Admin.accounts }" type="text">
 				</div>
 			</div>
+			
+			
 			<div class="form-group">
-				<label for="subjectTitle" class="col-sm-2 control-label">职位</label>
+				<label for="subjectTitle" class="col-sm-2 control-label">管理员</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="speakerJob"  id="speakerJob"
-						value="${speaker.speakerJob }" type="text">
+					<input class="form-control" name="adminIsSuper" id="adminIsSuper"
+						value="${Admin.adminIsSuper }" type="text">
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="subjectTitle" class="col-sm-2 control-label">头像地址</label>
-				<div class="col-sm-10">
-					<input class="form-control" name="picUrl" id="picUrl"
-						value="${speaker.picUrl }" type="text">
-				</div>
-			</div>
+			
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">简介</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="speakerDesc" id="speakerDesc"
-						value="${speaker.speakerDesc }" type="text">
+					<input class="form-control" name="adminRemark" id="adminRemark"
+						value="${Admin.adminRemark }" type="text">
 				</div>
 			</div>
 			<div class="form-group">

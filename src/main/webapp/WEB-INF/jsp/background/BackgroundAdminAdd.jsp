@@ -6,13 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<!--<base href="http://localhost:8080/Voids/">-->
+<base href=".">
 
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!--<base href="http://localhost:8080/Voids/">-->
-<base href=".">
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>智游教育</title>
 
@@ -54,20 +53,18 @@ b {
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
 					<li><a href="/video/show.do">视频管理</a></li>
-					<li class="active"><a href="/speaker/show.do">主讲人管理</a></li>
-					<li><a href="/course/list.do">课程管理
-						</a></li>
+					<li><a href="/speaker/show.do">主讲人管理</a></li>
+					<li ><a href="/course/list.do">课程管理</a></li>
+					<li class="active"><a href="/admin/show.do">管理员管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
 						aria-hidden="true"></i>&nbsp;&nbsp;<a class="navbar-link" href="loginOut.do">退出</a>
 				</p>
 			</div>
-			<!-- /.navbar-collapse -->
-
 
 		</div>
-		<!-- /.container-fluid -->
+
 	</nav>
 
 
@@ -76,8 +73,8 @@ b {
 		<div class="container">
 
 
+			<h2>添加管理员</h2>
 
-			<h2>修改主讲人</h2>
 
 		</div>
 	</div>
@@ -86,38 +83,37 @@ b {
 
 	<div class="container" style="margin-top: 20px;">
 
-		<form id="infoForm" class="form-horizontal" action="/speaker/update.do">
+		<form id="infoForm" class="form-horizontal" method="post" action="/admin/addAdmin.do">
 
-			<input name="id" value="${speaker.id }" type="hidden">
-
+			<div class="form-group">
+				<label for="subjectTitle" class="col-sm-2 control-label">用户名</label>
+				<div class="col-sm-10">
+					<input class="form-control" name="accounts" id="accounts"
+						placeholder="管理员用户名" type="text">
+				</div>
+			</div>
 			
-
-				<div class="form-group">
-				<label for="subjectTitle" class="col-sm-2 control-label">姓名</label>
+			<div class="form-group">
+				<label for="subjectTitle" class="col-sm-2 control-label">密码</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="speakerName" id="speakerName"
-						value="${speaker.speakerName }" type="text">
+					<input class="form-control" name="password" id="password"
+						placeholder="密码" type="text">
 				</div>
 			</div>
+			
 			<div class="form-group">
-				<label for="subjectTitle" class="col-sm-2 control-label">职位</label>
+				<label for="subjectTitle" class="col-sm-2 control-label">管理员</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="speakerJob"  id="speakerJob"
-						value="${speaker.speakerJob }" type="text">
+					<input class="form-control" name="adminIsSuper" id="adminIsSuper"
+						placeholder="是否为超级管理员" type="text">
 				</div>
 			</div>
+			
 			<div class="form-group">
-				<label for="subjectTitle" class="col-sm-2 control-label">头像地址</label>
+				<label for="subjectTitle" class="col-sm-2 control-label">备注</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="picUrl" id="picUrl"
-						value="${speaker.picUrl }" type="text">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="subjectTitle" class="col-sm-2 control-label">简介</label>
-				<div class="col-sm-10">
-					<input class="form-control" name="speakerDesc" id="speakerDesc"
-						value="${speaker.speakerDesc }" type="text">
+					<input class="form-control" name="adminRemark" id="adminRemark"
+						placeholder="管理员备注" type="text">
 				</div>
 			</div>
 			<div class="form-group">
@@ -138,6 +134,7 @@ b {
 	<script src="/static/js/confirm.js"></script>
 	<script src="/static/js/jquery.js"></script>
 	<script src="/static/js/message_cn.js"></script>
+
 
 
 

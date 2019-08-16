@@ -16,17 +16,15 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>智游教育</title>
 
-<link href="/VideoSSM/static/z/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/static/z/bootstrap/css/bootstrap.css" rel="stylesheet">
 
 <style type="text/css">
 .col-md-1 {
 	padding-top: 20px;
 }
-
 .a1 {
 	color: gray;
 }
-
 b {
 	float: right;
 }
@@ -53,9 +51,9 @@ b {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li><a href="/VideoSSM/videoShow.do">视频管理</a></li>
-					<li><a href="/VideoSSM/speakerShow.do">主讲人管理</a></li>
-					<li class="active"><a href="/VideoSSM/courseShow.do">课程管理
+					<li><a href="/video/show.do">视频管理</a></li>
+					<li><a href="/speaker/show.do">主讲人管理</a></li>
+					<li class="active"><a href="/course/list.do">课程管理
 						</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
@@ -86,7 +84,7 @@ b {
 
 	<div class="container" style="margin-top: 20px;">
 
-		<form id="infoForm" class="form-horizontal" action="/VideoSSM/courseUpdate.do">
+		<form id="infoForm" class="form-horizontal" action="/course/update.do" method="post">
 
 			<input name="id" value="${course.id }" type="hidden">
 
@@ -94,56 +92,17 @@ b {
 				<label for="subjectId" class="col-sm-2 control-label">所属学科</label>
 				<div class="col-sm-10">
 
-					<select name="subjectID" id="subjectId" class="form-control">
-						<option value="0" 
-						<c:if test="${course.subjectId eq '0'}">selected="selected"</c:if>						
-						>请选择所属学科</option>
- 
-						<option value="1"
-						<c:if test="${course.subjectId eq '1'}">selected="selected"</c:if>	
-						>WEB前端</option>
-
-						<option value="2"
-						<c:if test="${course.subjectId eq '2'}">selected="selected"</c:if>	
-						>Java</option>
-
-			           <option value="3" 
-			           <c:if test="${course.subjectId eq '3'}">selected="selected"</c:if>	
-			           >Android</option>
-
-						<option value="4"
-						<c:if test="${course.subjectId eq '4'}">selected="selected"</c:if>	
+					<select name="subjectId" id="subjectId" class="form-control">
+						<option value="0">请选择所属学科</option>
+						<c:forEach items="${list}" var="i">
+							<c:if test="${i.subjectId == course.subjectId}">
+								<option value="${i.subjectId}" selected=true>${i.subjectName}</option>
+							</c:if>
+							<c:if test="${i.subjectId != course.subjectId}">
+								<option value="${i.subjectId}">${i.subjectName}</option>
+							</c:if>
+						</c:forEach>
 						
-						>IOS</option>
-
-						<option value="5"
-						<c:if test="${course.subjectId eq '5'}">selected="selected"</c:if>	
-						>大数据</option>
-
-						<option value="6"
-						<c:if test="${course.subjectId eq '6'}">selected="selected"</c:if>	
-						>UI</option>
-
-						<option value="7"
-                        <c:if test="${course.subjectId eq '7'}">selected="selected"</c:if>							
-						>VR</option>
-
-						<option value="8"
-						<c:if test="${course.subjectId eq '8'}">selected="selected"</c:if>	
-						>U3D</option>
-
-						<option value="9"
-						<c:if test="${course.subjectId eq '9'}">selected="selected"</c:if>	
-						>人工智能</option>
-
-						<option value="10"
-						<c:if test="${course.subjectId eq '10'}">selected="selected"</c:if>	
-						>Python</option>
-
-                 		<option value="11"
-                 		<c:if test="${course.subjectId eq '11'}">selected="selected"</c:if>	
-                 		>PHP</option>
-					
 					</select>
 
 				</div>
@@ -173,16 +132,16 @@ b {
 		</form>
 	</div>
 
-	<!-- å¦æIEçæ¬å°äº9ï¼å è½½ä»¥ä¸js,è§£å³ä½çæ¬å¼å®¹é®é¢ -->
+	<!-- å¦æIEçæ¬å°äº9ï¼å è½½ä»¥ä¸js,è§£å³ä½çæ¬å¼å®¹é®é¢ -->
 	<!--[if lt IE 9]>
 <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-	<script src="/VideoSSM/static/js/jquery-1.js"></script>
-	<script src="/VideoSSM/static/js/bootstrap.js"></script>
-	<script src="/VideoSSM/static/js/confirm.js"></script>
-	<script src="/VideoSSM/static/js/jquery.js"></script>
-	<script src="/VideoSSM/static/js/message_cn.js"></script>
+	<script src="/static/js/jquery-1.js"></script>
+	<script src="/static/js/bootstrap.js"></script>
+	<script src="/static/js/confirm.js"></script>
+	<script src="/static/js/jquery.js"></script>
+	<script src="/static/js/message_cn.js"></script>
 
 
 
