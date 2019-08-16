@@ -19,7 +19,7 @@ public class YUserServiceImpl implements YUserService{
 
 	@Override
 	public void add(User user) {
-		userMapper.insert(user);
+		userMapper.insertSelective(user);
 		
 	}
 
@@ -31,13 +31,14 @@ public class YUserServiceImpl implements YUserService{
 
 	@Override
 	public void update(User user) {
-		userMapper.updateByPrimaryKey(user);
+		userMapper.updateByPrimaryKeySelective(user);
 		
 	}
 
 	@Override
-	public List<User> SelectAll(UserExample example) {
-		List<User> selectByExample = userMapper.selectByExample(example);
+	public List<User> SelectAll() {
+		UserExample userExample = new UserExample();
+		List<User> selectByExample = userMapper.selectByExample(userExample);
 		return selectByExample;
 	}
 	

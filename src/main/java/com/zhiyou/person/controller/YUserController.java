@@ -3,49 +3,59 @@ package com.zhiyou.person.controller;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.text.Document;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.zhiyou.model.User;
+import com.zhiyou.person.service.PictureService;
 import com.zhiyou.person.service.YUserService;
 import com.zhiyou.utils.MD5Utils;
+
+import com.zhiyou.utils.JsonUtils;
 
 @Controller
 public class YUserController {
 
 	@Autowired
 	YUserService userService;	
+	@Autowired
+	PictureService pictureService;
 	/**
 	 * 
 	 * @param req
 	 * @return
 	 * 28)进入修改资料
 	 */
-	
+
 	@RequestMapping("/userUpadteShow")
 	public String userUpadteShow(HttpServletRequest req) {
-		
+
 		return "/personalCenter/UserUpdate";
-		
+
 	}
 	//进入更改头像
 	@RequestMapping("/AvatarUpload")
 	public String AvatarUpload(HttpServletRequest req) {
 		return "/personalCenter/AvatarUpload";
-		
+
 	}
 	//密码安全
 	@RequestMapping("/PasswordUpdate")
 	public String PasswordUpdate(HttpServletRequest req) {
 		return "/personalCenter/PasswordUpdate";
 	}
-	
+
 	/**
 	 * 
 	 * @param user
@@ -56,23 +66,20 @@ public class YUserController {
 	@RequestMapping("/userUpadte")
 	public String userUpadte(User user,HttpServletRequest req) {
 		User userOriginal =(User) req.getSession().getAttribute("user");
-		int id=userOriginal.getId();
-		String nickname=userOriginal.getNickname();
-		String sex=userOriginal.getSex();
-		String birthday=userOriginal.getBirthday();
-		String address=userOriginal.getAddress();
-		Timestamp createtime = (Timestamp) userOriginal.getCreatetime();
-		user.setNickname(nickname);
-		user.setSex(sex);
-		user.setBirthday(birthday);
-		user.setAddress(address);
+		String phone = userOriginal.getPhone();
+		String password = userOriginal.getPassword();
+		String imgurl = userOriginal.getImgurl();
+		Date createtime = userOriginal.getCreatetime();
+		user.setPhone(phone);
+		user.setPassword(password);
+		user.setImgurl(imgurl);
 		user.setCreatetime(createtime);
-		userService.add(user);;
+		userService.update(user);
 		req.getSession().setAttribute("user", user);
-			return "/foreground/PersonalCenter";
-		
+		return "personalCenter/PersonalCenter";
+
 	}
-	
+
 	/**
 	 * 
 	 * @param imageFile
@@ -82,34 +89,33 @@ public class YUserController {
 	 * 30)提交修改头像
 	 */
 	@RequestMapping("/uploadAvatar")
+	//@ResponseBody
 	public String uploadAvatar(MultipartFile imageFile, HttpServletRequest req) {
-//		System.out.println(imageFile);
-		System.out.println(imageFile.getContentType());
-		if (imageFile.getContentType().equals("image/jpeg")||imageFile.getContentType().equals("image/png") ) {
-			System.out.println("格式符合");
-		
-		String imageName = System.currentTimeMillis()+imageFile.getOriginalFilename();
-		String realPath = req.getSession().getServletContext().getRealPath("static/z/");
-		String name = realPath +imageName;
-		String imgUrl ="${pageContext.request.contextPath}/static/z/"+imageName;
-		User user =(User) req.getSession().getAttribute("user");
-		user.setImgurl(imgUrl);
-		userService.update(user);
-		req.getSession().setAttribute("user", user);
+		System.out.println("**********"+imageFile.getContentType());
+		if(imageFile==null) {
+			return "/personalCenter/AvatarUpload";
+		}
+		else if (imageFile.getContentType().equals("image/jpeg")||imageFile.getContentType().equals("image/png") ) {
+			try{
 
-		try {
-			imageFile.transferTo(new File(name));
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return "/personalCenter/AvatarUpload";
-		}
-		req.setAttribute("msg", "头像格式不符");
-		return "/personalCenter/AvatarUpload";
-		
+				Map result = pictureService.uploadPicture(imageFile);
+				String json=JsonUtils.objectToJson(result);
+				String imgUrl =(String) result.get("url");
+				User user =(User) req.getSession().getAttribute("user");
+				user.setImgurl(imgUrl);
+				userService.update(user);
+				req.getSession().setAttribute("user", user);
+
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+
+			return "/personalCenter/AvatarUpload";
+
+		}else {
+			req.setAttribute("msg", "头像格式不符");
+			return "/personalCenter/AvatarUpload";}
+
 	}
 	/**
 	 * 
@@ -135,7 +141,7 @@ public class YUserController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	@RequestMapping("/rePasswordCheck")
 	public void rePasswordCheck(String newPassword,String rePassword, HttpServletRequest req,HttpServletResponse resp) {
@@ -145,7 +151,7 @@ public class YUserController {
 		}else {
 			isExist=false;
 		}
-		
+
 		try {
 			resp.getWriter().append("{\"isSuccess\":"+isExist+"}");
 		} catch (IOException e) {
@@ -167,11 +173,14 @@ public class YUserController {
 		user.setPassword(md5);
 		userService.update(user);
 		req.getSession().setAttribute("user", user);
-		return "/foreground/PersonalCenter";
-		
+		HttpSession session = req.getSession();
+		session.removeAttribute("user");
+
+		return "redirect:/index";
+
 	}
-	
-	
+
+
 }
 
 
