@@ -52,15 +52,19 @@ function fileSelectHandler() {
     var rFilter = /^(image\/jpeg|image\/png)$/i;
     if (!rFilter.test(oFile.type)) {
         $('.error').html('请选择一张 jpg 格式 或是 png 格式的图片。').show();
+        $("#uploadFileBtn").attr('disabled', true);
         return;
     }
 
     // check for file size
     if (oFile.size > 250 * 1024) {
         $('.error').html('您选择的图片文件过大，请更换一张较小的图片。').show();
+        $("#uploadFileBtn").attr('disabled',true);
         return;
     }
 
+    
+    $("#uploadFileBtn").attr('disabled',false);
     // preview element
     var oImage = document.getElementById('preview');
 

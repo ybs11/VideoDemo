@@ -101,7 +101,7 @@
 								<p>第二步：请确定,然后按上传</p>
 
 
-								<input value="上传" type="submit">
+								<input id="uploadFileBtn" value="上传" type="submit">
 							</div>
 						</form>
 					</div>

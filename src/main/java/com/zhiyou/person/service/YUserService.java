@@ -11,5 +11,5 @@ public interface YUserService {
 	void delete(int id);
 	void update(User user);
 
-	List<User> SelectAll(UserExample example);
+	List<User> SelectAll();
 }
