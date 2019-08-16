@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.zhiyou.dao.UserMapper;
 import com.zhiyou.foreground.service.AdminService;
 import com.zhiyou.foreground.service.UserService;
 import com.zhiyou.model.Admin;
@@ -76,7 +77,7 @@ public class LoginController {
 	protected void usersCheck(String user, HttpServletResponse resp)  {
 
 		boolean isExist;
-
+        System.out.println(user);
 		User selectByAccounts = userService.SelectByAccounts(user);
 
 		if(selectByAccounts ==null) {
@@ -188,5 +189,23 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@RequestMapping("/foreground/updatePassword.do")
+	public String foregroundUpdatePassword(HttpServletRequest req) {
+	try {
+		String email = req.getParameter("email");
+		String password = req.getParameter("password");
+		User user = userService.SelectByAccounts(email);
+		String md5 = MD5Utils.md5(password);
+		user.setPassword(md5);
+		userService.update(user);
+		req.setAttribute("msg", "修改成功");
+	    return "index";
+	}catch (Exception e) {
+		// TODO: handle exception
+	}
+	   req.setAttribute("msg", "修改失败");
+	    return "index";
 	}
 }

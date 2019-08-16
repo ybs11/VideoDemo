@@ -142,27 +142,29 @@
 		<div class="record">智游教育 © 豫ICP备17000832号-1 河南智游臻龙教育科技有限公司</div>
 		</footer>
 
-		<!--找回密码-->
+<!--找回密码-->
 	<div class="mask hidden" id="findPassword">
 		<div class="mask_content">
 			<div class="mask_content_header">
 				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
-				<form id="passwordForm" action="">
+				<form id="passwordForm" action="/foreground/updatePassword.do">
 					<h3>找回密码</h3>
-					<input id="loginEmailFind" placeholder="请输入邮箱" name="email"
+					<input id="loginEmailNew" placeholder="请输入邮箱" name="email"
 						type="email"> 
+					
 					 <input type="text" placeholder="请输入邮箱内的验证码"
-							id="code"> <input type="hidden" id="CodeNow">
-						<div id="codeMsg"></div>
-						<button type="button" id="codeBtn">发送验证码</button>
+							id="codeNew"> 
+					<input type="hidden" id="CodeNowNew">
+					<div id="codeMsgNew"></div>
+					<button type="button" id="codeBtnNew">发送验证码</button>
 					
 					<input id="newLoginPassword"
 					placeholder="请输入新密码" name="password" type="password">
 					
 					<div id="msgFind">&nbsp;</div>
-					<input id="findSubBtn" onclick="return commitLogin()" value="提    交" type="submit">
+					<input id="findSubBtn"  value="提    交" type="submit">
 				</form>
 			</div>
 			<div class="mask_content_footer">
@@ -173,10 +175,7 @@
 		<!-- ************************************************************************************* -->
 
 
-
-
-
-		<!--用户登录-->
+	<!--用户登录-->
 	<div class="mask hidden" id="login">
 		<div class="mask_content">
 			<div class="mask_content_header">
@@ -201,182 +200,186 @@
 			</div>
 		</div>
 	</div>
-		<!-- ************************************************************************************* -->
-		<!-- 管理员登录 -->
-		<div class="mask hidden" id="adminLogin">
-			<div class="mask_content">
-				<div class="mask_content_header">
-					<img src="/static/z/logo.png" alt="" class="ma">
-				</div>
-				<div class="mask_content_body">
-					<form id="AdminLoginForm" action="/adminLogin.do" method="post">
-						<h3>管理员登录</h3>
-						<input id="loginAccounts" placeholder="请输入管理员账户" name="accounts"
-							type="text"
-							style="width: 100%; margin: 15px 0; padding: 0 10px 0 50px; border: 1px solid #bac0ce; background-image: url(/static/z/user.png); background-repeat: no-repeat; background-position: 8px center;">
+	<!-- ************************************************************************************* -->
+	<!-- 管理员登录 -->
+	<div class="mask hidden" id="adminLogin">
+		<div class="mask_content">
+			<div class="mask_content_header">
+				<img src="/static/z/logo.png" alt="" class="ma">
+			</div>
+			<div class="mask_content_body">
+				<form id="AdminLoginForm" action="adminLogin.do" method="post">
+					<h3>管理员登录</h3>
+					<input id="loginAccounts" placeholder="请输入管理员账户" name="accounts"
+						type="text"
+						style="width: 100%; margin: 15px 0; padding: 0 10px 0 50px; border: 1px solid #bac0ce; background-image: url(/static/z/user.png); background-repeat: no-repeat; background-position: 8px center;">
 
-						<input id="loginAccountsPassword" placeholder="请输入密码"
-							name="accountsPassword" type="password">
-						<div id="msg">&nbsp;</div>
-						<input id="adminSubBtn" value="登　录" type="submit">
-					</form>
-				</div>
-				<div class="mask_content_footer">
-					<span id="adminLogin_close">关 闭</span>
-				</div>
+					<input id="loginAccountsPassword" placeholder="请输入密码"
+						name="accountsPassword" type="password">
+					<div id="msg">&nbsp;</div>
+					<input id="adminSubBtn" value="登　录" type="submit">
+				</form>
+			</div>
+			<div class="mask_content_footer">
+				<span id="adminLogin_close">关 闭</span>
 			</div>
 		</div>
-		<c:if test="${msg!=null}">
-			<script type="text/javascript">
-				alert('${msg}');
-			</script>
-		</c:if>
-		<!-- ************************************************************************************* -->
-		<!-- 用户注册 -->
-		<div class="mask hidden" id="reg">
-			<div class="mask_content">
-				<div class="mask_content_header">
-					<img src="/static/z/logo.png" alt="" class="ma">
-				</div>
-				<div class="mask_content_body">
-					<form id="regForm"
-						action="http://localhost:8080/Voids/user/insertUser.action">
-						<h3>新用户注册</h3>
-						<input id="regEmail" placeholder="请输入邮箱" name="email" type="email"><span
-							id="emailMsg"></span> <input id="regPsw" placeholder="请输入密码"
-							name="password" type="password"> <input id="regPswAgain"
-							placeholder="请再次输入密码" name="psw_again" type="password"><span
-							id="passMsg"></span>
-							 <input type="text" placeholder="请输入邮箱内的验证码"
-							id="code"> <input type="hidden" id="CodeNow">
-						<div id="codeMsg"></div>
-						<button type="button" id="codeBtn">发送验证码</button>
-						<div id="yzm" class="form-inline">
-							<input name="yzm" style="width: 45%; display: inline-block;"
-								type="text">
-							<div id="v_container"
-								style="width: 45%; height: 40px; float: right;">
-								<canvas id="verifyCanvas" width="100" height="38"
-									style="cursor: pointer;">您的浏览器版本不支持canvas</canvas>
-								<canvas id="verifyCanvas" width="100" height="38"
-									style="cursor: pointer;">您的浏览器版本不支持canvas</canvas>
-							</div>
-						</div>
-						<input id="formsub"  onclick="return commitRegForm();" value="注　册" type="submit">
-					</form>
-				</div>
-				<div class="mask_content_footer">
-					<span id="reg_close">关 闭</span>
-				</div>
-			</div>
-		</div>
-
-
-
-		<script src="/static/z/jquery-1.js"></script>
-		<script src="/static/z/gVerify.js"></script>
-		<script src="/static/z/index.js"></script>
-
-		<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+	</div>
+	<c:if test="${msg!=null}">
 		<script type="text/javascript">
-			$(document).ready(function() {
-				$("#loginLink").click(function() {
-					$("#login").toggle();
-				});
-			});
-			$(document).ready(function() {
-				$("#adminLoginLink").click(function() {
-					$("#adminLogin").toggle();
-				});
-			});
-			$(document).ready(function() {
-				$("#regLink").click(function() {
-					$("#reg").toggle();
-				});
-			});
-			$(document).ready(function() {
-				$("#reg_close").click(function() {
-					$("#reg").toggle();
-				});
-			});
-			$(document).ready(function() {
-				$("#login_close").click(function() {
-					$("#login").toggle();
-				});
-			});
-			$(document).ready(function() {
-				$("#adminLogin_close").click(function() {
-					$("#adminLogin").toggle();
-				});
-			});
-
-			$(document).ready(function() {
-				$("#find_close").click(function() {
-					$("#findPassword").toggle();
-				});
-			});
-			
-			$(document).ready(function() {
-				$("#forgetPass").click(function() {
-					$("#login").toggle();
-					$("#findPassword").toggle();
-				});
-			});
-			$(function() {
-				$("#adminSubBtn").attr('disabled', true);
-				$("input[name='accounts']").blur(accountsCheck);
-			});
-			function accountsCheck() {
-
-				$.ajax({
-							url : "${pageContext.request.contextPath}/accountsCheck.do",
-							type : "post",
-							data : {
-								accounts : $("input[name='accounts']").val()
-							},
-							dataType : "json",
-							success : function(msg) {
-								if (msg.isSuccess) {
-									$("#adminSubBtn").attr('disabled', false);
-									$("#msg").html(
-											"<font color='green'>账号正确!</font>");
-								} else {
-									$("#msg").html(
-											"<font color='red'>账号错误!</font>");
-
-								}
-							}
-						});
-			}
-			
-			$(function() {
-				$("#userSubBtn").attr('disabled', true);
-				$("#loginEmail").blur(UserCheck);
-				$("#loginPassword").blur(UserCheck);
-				$("#userSubBtn").click(UserCheck);
-			});
-			
-			function UserCheck() {
-
-				$.ajax({
-					url : "${pageContext.request.contextPath}/userCheck.do",
-					type : "post",
-					data : {
-						user : $("#loginEmail").val()
-					},
-					dataType : "json",
-					success : function(msg) {
-						if (msg.isSuccess) {
-							$("#userSubBtn").attr('disabled', false);
-							$("#msgUser").html("<font color='green'>账号正确!</font>");
-						} else {
-							$("#msgUser").html("<font color='red'>账号未被注册!</font>");
-
-						}
-					}
-				});
-			}
+			alert('${msg}');
 		</script>
+	</c:if>
+	<!-- ************************************************************************************* -->
+	<!-- 用户注册 -->
+	<div class="mask hidden" id="reg">
+		<div class="mask_content">
+			<div class="mask_content_header">
+				<img src="/static/z/logo.png" alt="" class="ma">
+			</div>
+			<div class="mask_content_body">
+				<form id="regForm"
+					action="">
+					<h3>新用户注册</h3>
+					<input id="regEmail" placeholder="请输入邮箱" name="email" type="email"><span
+						id="emailMsg"></span> <input id="regPsw" placeholder="请输入密码"
+						name="password" type="password"> <input id="regPswAgain"
+						placeholder="请再次输入密码" name="psw_again" type="password"><span
+						id="passMsg"></span>
+					
+					  <input  type="text" placeholder="请输入邮箱内的验证码"
+								id="code"> <input type="hidden" id="CodeNow">
+							<div id="codeMsg"></div>
+					  <button type="button" id="codeBtn" >发送验证码</button>
+					
+					<div id="yzm" class="form-inline">
+						<input name="yzm" style="width: 45%; display: inline-block;"
+							type="text">
+						<div id="v_container"
+							style="width: 45%; height: 40px; float: right;">
+							<canvas id="verifyCanvas" width="100" height="38"
+								style="cursor: pointer;">您的浏览器版本不支持canvas</canvas>
+							<canvas id="verifyCanvas" width="100" height="38"
+								style="cursor: pointer;">您的浏览器版本不支持canvas</canvas>
+						</div>
+					</div>
+					<input id="formsub"  onclick="return commitRegForm();" value="注　册" type="submit">
+				</form>
+			</div>
+			<div class="mask_content_footer">
+				<span id="reg_close">关 闭</span>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="/static/z/jquery-1.js"></script>
+	<script src="/static/z/gVerify.js"></script>
+	<script src="/static/z/index.js"></script>
+
+	<script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#loginLink").click(function() {
+				$("#login").toggle();
+			});
+		});
+		$(document).ready(function() {
+			$("#adminLoginLink").click(function() {
+				$("#adminLogin").toggle();
+			});
+		});
+		$(document).ready(function() {
+			$("#regLink").click(function() {
+				$("#reg").toggle();
+			});
+		});
+		$(document).ready(function() {
+			$("#reg_close").click(function() {
+				$("#reg").toggle();
+			});
+		});
+		$(document).ready(function() {
+			$("#login_close").click(function() {
+				$("#login").toggle();
+			});
+		});
+		$(document).ready(function() {
+			$("#adminLogin_close").click(function() {
+				$("#adminLogin").toggle();
+			});
+		});
+
+		
+		$(document).ready(function() {
+			$("#find_close").click(function() {
+				$("#findPassword").toggle();
+			});
+		});
+		
+		$(document).ready(function() {
+			$("#forgetPass").click(function() {
+				$("#login").toggle();
+				$("#findPassword").toggle();
+			});
+		});
+		$(function() {
+			$("#adminSubBtn").attr('disabled', true);
+			$("input[name='accounts']").blur(accountsCheck);
+			$("#loginAccountsPassword").blur(accountsCheck);
+			$("#adminSubBtn").click(accountsCheck);
+		});
+		function accountsCheck() {
+
+			$.ajax({
+				url : "${pageContext.request.contextPath}/accountsCheck.do",
+				type : "post",
+				data : {
+					accounts : $("input[name='accounts']").val()
+				},
+				dataType : "json",
+				success : function(msg) {
+					if (msg.isSuccess) {
+						$("#adminSubBtn").attr('disabled', false);
+						$("#msg").html("<font color='green'>账号正确!</font>");
+					} else {
+						$("#msg").html("<font color='red'>账号错误!</font>");
+
+					}
+				}
+			});
+		}
+		
+
+		$(function() {
+			$("#userSubBtn").attr('disabled', true);
+			$("#loginEmail").blur(UserCheck);
+			$("#loginPassword").blur(UserCheck);
+			$("#userSubBtn").click(UserCheck);
+		});
+		
+		function UserCheck() {
+
+			$.ajax({
+				url : "${pageContext.request.contextPath}/userCheck.do",
+				type : "post",
+				data : {
+					user : $("#loginEmail").val()
+				},
+				dataType : "json",
+				success : function(msg) {
+					if (msg.isSuccess) {
+						$("#userSubBtn").attr('disabled', false);
+						$("#msgUser").html("<font color='green'>账号正确!</font>");
+					} else {
+						$("#msgUser").html("<font color='red'>账号未被注册!</font>");
+
+					}
+				}
+			});
+		}
+	</script>
 
 
 

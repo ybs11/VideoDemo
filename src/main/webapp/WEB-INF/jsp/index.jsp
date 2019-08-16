@@ -233,7 +233,7 @@
 				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
-				<form id="passwordForm" action="/updatePassword.do">
+				<form id="passwordForm" action="/foreground/updatePassword.do">
 					<h3>找回密码</h3>
 					<input id="loginEmailNew" placeholder="请输入邮箱" name="email"
 						type="email"> 
@@ -248,6 +248,7 @@
 					placeholder="请输入新密码" name="password" type="password">
 					
 					<div id="msgFind">&nbsp;</div>
+					
 					<input id="findSubBtn"  value="提    交" type="submit">
 				</form>
 			</div>
@@ -458,6 +459,32 @@
 						$("#msgUser").html("<font color='green'>账号正确!</font>");
 					} else {
 						$("#msgUser").html("<font color='red'>账号未被注册!</font>");
+
+					}
+				}
+			});
+		}
+		
+		$(function() {
+			$("#findSubBtn").attr('disabled', true);
+			$("#loginEmailNew").blur(NewUserCheck);
+			$("#findSubBtn").click(NewUserCheck);
+		});
+		function NewUserCheck() {
+           
+			$.ajax({
+				url : "${pageContext.request.contextPath}/userCheck.do",
+				type : "post",
+				data : {
+					user : $("#loginEmailNew").val()
+				},
+				dataType : "json",
+				success : function(msg) {
+					if (msg.isSuccess) {
+						$("#findSubBtn").attr('disabled', false);
+						$("#msgFind").html("<font color='green'>账号正确!</font>");
+					} else {
+						$("#msgFind").html("<font color='red'>账号未被注册!</font>");
 
 					}
 				}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.zhiyou.dao.UserMapper;
@@ -19,6 +20,7 @@ public class UserForegroundService implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 	
+	
 	public User SelectByAccounts(String accounts) {
 		UserExample example = new UserExample();
 		Criteria criteria = example.createCriteria();
@@ -31,6 +33,7 @@ public class UserForegroundService implements UserService{
 		return null;
 	}
 
+	
 	public User SelectById(int id) {
 		User user = userMapper.selectByPrimaryKey(id);
 		return user;
@@ -55,6 +58,11 @@ public class UserForegroundService implements UserService{
 		String codeString = code.toString();
 		MailUtil.setMain(email,codeString );
 		return codeString;
+	}
+
+	@Override
+	public void update(User user) {
+		int updateByPrimaryKey = userMapper.updateByPrimaryKey(user);
 	}
 
 }

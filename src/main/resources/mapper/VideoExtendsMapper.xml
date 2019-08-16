@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.dao.VideoExtendsMapper">
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.VideoExtends">
+    <id column="video_id" jdbcType="INTEGER" property="videoId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="time" jdbcType="INTEGER" property="time" />
+    <result column="speaker_id" jdbcType="INTEGER" property="speakerId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="play_num" jdbcType="INTEGER" property="playNum" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey2" parameterType="java.lang.Integer">
+    delete from video
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteAll2">
+  	delete from video where video_id in 
+  	<foreach collection="array" item="ids" separator="," open="(" close=")">
+  		#{ids}
+  	</foreach>
+  </delete>
+  <insert id="insert2" parameterType="com.zhiyou.model.VideoExtends">
+    insert into video (video_id, title, detail, 
+      time, speaker_id, course_id, 
+      video_url, image_url, play_num
+      )
+    values (#{videoId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{time,jdbcType=INTEGER}, #{speakerId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, 
+      #{videoUrl,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{playNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey2" parameterType="com.zhiyou.model.VideoExtends">
+    update video
+    <set>
+    	<if test="title != null and title != '' ">
+    		title = #{title,jdbcType=VARCHAR},
+    	</if>
+    	<if test="detail != null and detail != '' ">
+    		detail = #{detail,jdbcType=VARCHAR},
+    	</if>
+    	<if test="time != null and time != '' ">
+    		time = #{time,jdbcType=INTEGER},
+    	</if>
+    	<if test="speakerId != null and speakerId != '' ">
+    		speaker_id = #{speakerId,jdbcType=INTEGER},
+    	</if>
+    	<if test="courseId != null and courseId != '' ">
+    		course_id = #{courseId,jdbcType=INTEGER},
+    	</if>
+    	<if test="videoUrl != null and videoUrl != '' ">
+    		video_url = #{videoUrl,jdbcType=VARCHAR},
+    	</if>
+    	<if test="imageUrl != null and imageUrl != '' ">
+    		image_url = #{imageUrl,jdbcType=VARCHAR},
+    	</if>
+    	<if test="playNum != null and playNum != '' ">
+    		play_num = #{playNum,jdbcType=INTEGER},
+    	</if>
+    </set>     
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey2" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select video_id, title, detail, time, speaker_id, course_id, video_url, image_url, 
+    play_num
+    from video
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </select>
+  
+  <resultMap id="BaseResultMap2" type="com.zhiyou.model.VideoExtends">
+    <id column="video_id" jdbcType="INTEGER" property="videoId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="detall" jdbcType="VARCHAR" property="detall" />
+    <result column="time" jdbcType="INTEGER" property="time" />
+    <result column="speaker_id" jdbcType="INTEGER" property="speakerId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="play_num" jdbcType="INTEGER" property="playNum" />
+  </resultMap>
+  <select id="selectByCourseId2" parameterType="java.lang.Integer" resultMap="BaseResultMap2">
+  	select * from video where course_id in
+  	<foreach collection="array" item="ids" open="(" close=")" separator=",">
+  		#{ids}
+  	</foreach>
+  </select>
+  
+  <select id="selectBySpeakerId2" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select video_id, title, detail, time, speaker_id, course_id, video_url, image_url, 
+    play_num
+    from video
+    where speaker_id = #{speakerId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll2" resultMap="BaseResultMap">
+    select video_id, title, detail, time, speaker_id, course_id, video_url, image_url, 
+    play_num
+    from video
+  </select>
+  <select id="selectCount2" parameterType="com.zhiyou.model.VideoExtends" resultType="int">
+  	select count(1) 
+	from video v
+  		left join speaker s on v.speaker_id=s.id
+  		left join course c on v.course_id=c.id
+  	<include refid="video_where"></include>
+  </select>
+  
+  <sql id="video_where">
+  	<where>
+  		<if test="title !=null and title !='' ">
+  			and v.title like '%${title}%'
+  		</if>
+  		<if test="speakerId != null and speakerId !='' ">
+  			and v.speaker_id = #{speakerId}
+  		</if>
+  		<if test="courseId != null and courseId !='' ">
+  			and v.course_id = #{courseId}
+  		</if>
+  	</where>
+  </sql>
+  
+  <resultMap type="com.zhiyou.model.VideoExtends" id="videoMap">
+  	<id column="video_id" jdbcType="INTEGER" property="videoId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="time" jdbcType="INTEGER" property="time" />
+    <result column="speaker_id" jdbcType="INTEGER" property="speakerId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="play_num" jdbcType="INTEGER" property="playNum" />
+    <association column="id" property="speaker" select="com.zhiyou.dao.SpeakerMapper.selectByPrimaryKey2"></association>
+    <association column="id" property="course" select="com.zhiyou.dao.CourseMapper.selectByPrimaryKey2"></association>
+  </resultMap>
+  <select id="selectByVideo2" parameterType="com.zhiyou.model.VideoExtends" resultMap="videoMap">
+  	select 
+	  	*
+  	from video v
+  		left join speaker s on v.speaker_id=s.id
+  		left join course c on v.course_id=c.id
+  	<include refid="video_where"></include>
+  	limit #{start},#{rows};
+  </select>
+</mapper>

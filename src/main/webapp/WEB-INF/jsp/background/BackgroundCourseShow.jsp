@@ -37,9 +37,10 @@ th {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li><a href="/VideoSSM/videoShow.do">视频管理</a></li>
+					<li><a href="/video/show.do">视频管理</a></li>
 					<li><a href="/speaker/show.do">主讲人管理</a></li>
 					<li class="active"><a href="/course/list.do">课程管理</a></li>
+					<li><a href="/admin/show.do">管理员管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i

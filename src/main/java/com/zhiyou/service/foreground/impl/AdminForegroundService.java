@@ -3,6 +3,7 @@ package com.zhiyou.service.foreground.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.zhiyou.dao.AdminMapper;
@@ -16,6 +17,7 @@ public class AdminForegroundService implements AdminService{
 	@Autowired
 	private AdminMapper adminMapper;
 
+	@Cacheable("SELECT_ACCOUNTS_ADMIN")
 	public Admin SelectByAccounts(String accounts){
 		AdminExample example = new AdminExample();
 		Criteria criteria = example.createCriteria();
@@ -27,7 +29,7 @@ public class AdminForegroundService implements AdminService{
 		}
 		return null;
 	};
-
+    @Cacheable("SELECT_ADMINID")
 	public Admin SelectByAdminId(int adminId){
 		Admin admin = adminMapper.selectByPrimaryKey(adminId);
 		return admin;
