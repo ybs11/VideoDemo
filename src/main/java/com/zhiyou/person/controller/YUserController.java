@@ -69,7 +69,7 @@ public class YUserController {
 		user.setCreatetime(createtime);
 		userService.add(user);;
 		req.getSession().setAttribute("user", user);
-		return "/foreground/PersonalCenter";
+			return "/foreground/PersonalCenter";
 		
 	}
 	
