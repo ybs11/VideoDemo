@@ -91,7 +91,7 @@ public class YUserController {
 	@RequestMapping("/uploadAvatar")
 	//@ResponseBody
 	public String uploadAvatar(MultipartFile imageFile, HttpServletRequest req) {
-		System.out.println("**********"+imageFile.getContentType());
+		
 		if(imageFile==null) {
 			return "/personalCenter/AvatarUpload";
 		}
@@ -99,9 +99,11 @@ public class YUserController {
 			try{
 
 				Map result = pictureService.uploadPicture(imageFile);
-				String json=JsonUtils.objectToJson(result);
+				
 				String imgUrl =(String) result.get("url");
+				System.out.println(imgUrl);
 				User user =(User) req.getSession().getAttribute("user");
+				System.out.println(user);
 				user.setImgurl(imgUrl);
 				userService.update(user);
 				req.getSession().setAttribute("user", user);

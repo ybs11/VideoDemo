@@ -29,6 +29,7 @@ public class PictureServiceImpl implements PictureService{
 	private String IMAGE_BASE_URL;
 	@Override
 	public Map uploadPicture(MultipartFile imageFile) {
+		
 		Map resultMap=new HashMap<>();
 		try {
 			// 生成一个新的文件名
@@ -40,7 +41,9 @@ public class PictureServiceImpl implements PictureService{
 			newName=newName+oldName.substring(oldName.lastIndexOf("."));
 			//图片上传
 			String imagePath=new DateTime().toString("/yyyy/MM/dd");
+	
 			boolean result = FtpUtil.uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, FTP_BASE_PATH, imagePath, newName, imageFile.getInputStream());
+			System.out.println(result);
 			//返回结果
 			if(!result) {
 				resultMap.put("error", 1);
@@ -49,6 +52,7 @@ public class PictureServiceImpl implements PictureService{
 			}
 			resultMap.put("error", 0);
 			resultMap.put("url", IMAGE_BASE_URL+imagePath+"/"+newName);
+			System.out.println("*********"+IMAGE_BASE_URL+imagePath+"/"+newName);
 			return resultMap;
 		} catch (Exception e) {
 			resultMap.put("error", 1);

@@ -50,7 +50,7 @@
 			<c:if test="${not empty user.accounts  }">
 				<div id="userAccount" style="float: right">
 					<a href="/loginOut.do">退出</a> <a
-						href="/foreground/PersonalCenter.jsp">
+						href="/foreground/PersonalCenter.do">
 						${user.accounts}</a>
 				</div>
 			</c:if>

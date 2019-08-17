@@ -20,7 +20,7 @@ public class UserForegroundService implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 	
-	
+	@Cacheable("USERACCOUNTS")
 	public User SelectByAccounts(String accounts) {
 		UserExample example = new UserExample();
 		Criteria criteria = example.createCriteria();
@@ -28,6 +28,7 @@ public class UserForegroundService implements UserService{
 		List<User> list = userMapper.selectByExample(example);
 		if(list.size()>0) {
 			User user = list.get(0);
+			
 			return user;
 		}
 		return null;

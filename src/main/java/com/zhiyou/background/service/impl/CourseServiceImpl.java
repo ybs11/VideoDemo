@@ -3,6 +3,8 @@ package com.zhiyou.background.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.zhiyou.background.service.CourseService;
@@ -15,14 +17,18 @@ public class CourseServiceImpl implements CourseService {
 	@Autowired
 	private CourseMapper courseMapper;
 
+	@Caching(evict = {@CacheEvict(value = "SELECT_VIDEOANDSUBJECT" , allEntries=true),
+			@CacheEvict(value = "SELCELT_VIDEO" , allEntries=true)})
 	public void deleteByPrimaryKey(Integer id) {
 		courseMapper.deleteByPrimaryKey2(id);
 	}
-
+	@Caching(evict = {@CacheEvict(value = "SELECT_VIDEOANDSUBJECT" , allEntries=true),
+			@CacheEvict(value = "SELCELT_VIDEO" , allEntries=true)})
 	public void deleteAll(Integer[] ids) {
 		courseMapper.deleteAll2(ids);
 	}
-	
+	@Caching(evict = {@CacheEvict(value = "SELECT_VIDEOANDSUBJECT" , allEntries=true),
+			@CacheEvict(value = "SELCELT_VIDEO" , allEntries=true)})
 	public void insert(Course record) {
 		courseMapper.insert2(record);
 	}
@@ -39,7 +45,8 @@ public class CourseServiceImpl implements CourseService {
 		return courseMapper.selectBySubjectId2(subjectId);
 	}
 
-	
+	@Caching(evict = {@CacheEvict(value = "SELECT_VIDEOANDSUBJECT" , allEntries=true),
+			@CacheEvict(value = "SELCELT_VIDEO" , allEntries=true)})
 	public void updateByPrimaryKey(Course record) {
 		courseMapper.updateByPrimaryKey2(record);
 	}
