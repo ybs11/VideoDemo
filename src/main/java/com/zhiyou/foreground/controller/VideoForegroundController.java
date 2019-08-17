@@ -35,6 +35,9 @@ public class VideoForegroundController {
 		
 	    VideoExtension video = videoForegroundService.selectById(Integer.valueOf(videoId));
 		//System.out.println(video);
+	    if(video.getPlayNum()==null) {
+	    	video.setPlayNum(0);
+	    }
 		Integer playNum = video.getPlayNum()+1;
 	    //System.out.println(playNum);
 		video.setPlayNum(playNum);

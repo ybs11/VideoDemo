@@ -3,6 +3,8 @@ package com.zhiyou.background.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.zhiyou.background.service.VideoService;
@@ -14,15 +16,18 @@ public class VideoServiceImpl implements VideoService {
 	
 	@Autowired
 	private VideoExtendsMapper videoMapper;
-	
+	@Caching(evict = {@CacheEvict(value = "SELECT_VIDEOANDSUBJECT" , allEntries=true),
+			@CacheEvict(value = "SELCELT_VIDEO" , allEntries=true)})
 	public void deleteByPrimaryKey(Integer videoId) {
 		videoMapper.deleteByPrimaryKey2(videoId);
 	}
-	
+	@Caching(evict = {@CacheEvict(value = "SELECT_VIDEOANDSUBJECT" , allEntries=true),
+			@CacheEvict(value = "SELCELT_VIDEO" , allEntries=true)})
 	public void deleteAll(Integer[] ids) {
 		videoMapper.deleteAll2(ids);
 	}
-
+	@Caching(evict = {@CacheEvict(value = "SELECT_VIDEOANDSUBJECT" , allEntries=true),
+			@CacheEvict(value = "SELCELT_VIDEO" , allEntries=true)})
 	public void insert(VideoExtends record) {
 		videoMapper.insert2(record);
 	}
@@ -42,7 +47,8 @@ public class VideoServiceImpl implements VideoService {
 	public List<VideoExtends> selectAll() {
 		return videoMapper.selectAll2();
 	}
-
+	@Caching(evict = {@CacheEvict(value = "SELECT_VIDEOANDSUBJECT" , allEntries=true),
+			@CacheEvict(value = "SELCELT_VIDEO" , allEntries=true)})
 	public void updateByPrimaryKey(VideoExtends record) {
 		videoMapper.updateByPrimaryKey2(record);
 	}
