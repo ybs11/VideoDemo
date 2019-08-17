@@ -116,7 +116,7 @@ public class LoginController {
 		
 
 			req.getSession().setAttribute("user", user);
-			
+			req.getSession().setMaxInactiveInterval(1000*60*60*24*10);
 			
 			try {
 				resp.getWriter().write("success");
