@@ -25,6 +25,7 @@ import com.zhiyou.utils.MD5Utils;
 import com.zhiyou.utils.JsonUtils;
 
 @Controller
+@RequestMapping("/personal")
 public class YUserController {
 
 	@Autowired

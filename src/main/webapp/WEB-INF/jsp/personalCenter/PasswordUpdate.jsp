@@ -60,11 +60,11 @@
             <h2>我的资料</h2>
             <div id="profile_tab">
                 <ul class="profile_tab_header f_left clearfix">
-                    <li><a href="${pageContext.request.contextPath}/userUpadteShow">更改资料</a></li>
+                    <li><a href="${pageContext.request.contextPath}/personal/userUpadteShow">更改资料</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li><a href="${pageContext.request.contextPath}/AvatarUpload">更改头像</a></li>
+                    <li><a href="${pageContext.request.contextPath}/personal/AvatarUpload">更改头像</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li><a href="${pageContext.request.contextPath}/PasswordUpdate">密码安全</a></li>
+                    <li><a href="${pageContext.request.contextPath}/personal/PasswordUpdate">密码安全</a></li>
                 </ul>
                 <div class="proflle_tab_body">
                     <div class="proflle_tab_workplace clearfix">
@@ -79,7 +79,7 @@
                         </div>
                       
                         <div class="profile_ifo_area">
-                            <form action="${pageContext.request.contextPath}/passwordUpdate" method="post">
+                            <form action="${pageContext.request.contextPath}/personal/passwordUpdate" method="post">
                                 <div class="form_group">
                                     <span class="dd">旧　密　码：</span>
                                     <input id="originalPassword" type="password" name="originalPassword"><span id="oldMsg"></span>
@@ -129,7 +129,7 @@
 	function originalPasswordCheck(){
     
 		$.ajax({
-		url:"${pageContext.request.contextPath}/originalPasswordCheck",
+		url:"${pageContext.request.contextPath}/personal/originalPasswordCheck",
 		type:"post",		
 		data:{
 			originalPassword:$("#originalPassword").val()
@@ -149,7 +149,7 @@
 	}
 	function rePasswordCheck() {
 		$.ajax({
-			url:"${pageContext.request.contextPath}/rePasswordCheck",
+			url:"${pageContext.request.contextPath}/personal/rePasswordCheck",
 			type:"post",		
 			data:{
 				newPassword:$("#newPassword").val(),
