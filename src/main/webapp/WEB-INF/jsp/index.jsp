@@ -98,7 +98,7 @@
 							</td>
 							<td rowspan="2" class="one_three"><a class="opacity5"
 								href="/foreground/courseList.do?subjectId=2"> <img
-									src="/static/z/java.jpg" alt="" class="image "
+									src="/static/z/java.jpg" alt="" class="image"
 									draggable="false">
 									<div class="headline">
 										<span>Java教程</span> <img src="/static/z/arrow.png"

@@ -28,7 +28,7 @@ public class CourseForegroundController {
 		if(list.isEmpty()) {
 			
 			req.setAttribute("msg", "木有课，别点我");
-			return "index";
+			return "redirect:/index";
 		}
 		VideoResult videoResult = new VideoResult();
 		Map map =new HashMap<String, Object>();
