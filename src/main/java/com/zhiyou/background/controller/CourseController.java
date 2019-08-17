@@ -44,7 +44,7 @@ public class CourseController {
 	@RequestMapping("/addCourse.do")
 	public String addCourse(Course course) {
 		courseService.insert(course);
-		return "forward:list.do";
+		return "redirect:list.do";
 	}
 	
 	@RequestMapping("/delCourseById.do")

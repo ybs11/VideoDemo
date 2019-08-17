@@ -94,7 +94,7 @@ th {
 				</thead>
 				<tbody>
 				
-					<c:forEach items="${list}" var="i">
+					<c:forEach items="${list.data}" var="i">
 						<tr>
 							<td><input type="checkbox" name="check" value="${i.adminId}"></td>
 							<td>${i.adminId}</td>

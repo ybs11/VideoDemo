@@ -16,13 +16,13 @@ public class Page<T> {
 	/**
 	 * 
 	 * @param total
-	 *            ��ѯ����������
+	 *            查询数据总条数
 	 * @param page
-	 *            ��ǰҳ����
+	 *            当前页码数
 	 * @param size
-	 *            ÿҳ��ʾ��������
+	 *            每页显示数据条数
 	 * @param rows
-	 *            ��ѯ�����
+	 *            查询结果集
 	 */
 	public Page(int total, int page, int size, List<T> rows) {
 		super();
