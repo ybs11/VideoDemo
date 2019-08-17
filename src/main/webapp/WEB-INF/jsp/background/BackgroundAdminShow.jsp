@@ -39,7 +39,9 @@ th {
 					<li><a href="/video/show.do">视频管理</a></li>
 					<li> <a href="/speaker/show.do">主讲人管理</a></li>
 					<li ><a href="/course/list.do">课程管理</a></li>
-					<li class="active"><a href="/admin/show.do">管理员管理</a></li>
+					<c:if test="${admin.adminIsSuper==1}">
+						<li class="active"><a href="/admin/show.do">管理员管理</a></li>
+					</c:if>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
@@ -96,7 +98,12 @@ th {
 							<td><input type="checkbox" name="check" value="${i.adminId}"></td>
 							<td>${i.adminId}</td>
 							<td>${i.accounts}</td>
-							<td>${i.adminIsSuper}</td>
+							<c:if test="${i.adminIsSuper==1}">
+								<td>超级管理员</td>
+							</c:if>
+							<c:if test="${i.adminIsSuper!=1}">
+								<td>普通管理员</td>
+							</c:if>
 							<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.adminRemark}</td>
 							<td><a href="${pageContext.request.contextPath}/admin/edit.do?id=${i.adminId}">✎</a></td>
 							<td><a id="del" href="javascript:void(0);" onclick="delAdminById('#del','${i.adminId}','${i.accounts}')">X</a></td>
