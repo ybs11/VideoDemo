@@ -42,6 +42,7 @@ public class UserForegroundService implements UserService{
 	}
 
 	@Override
+	@CacheEvict(value = "USERACCOUNTS", allEntries=true)
 	public void add(User user) {
 		int insertSelective = userMapper.insertSelective(user);
 		

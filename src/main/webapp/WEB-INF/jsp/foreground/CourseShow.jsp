@@ -208,7 +208,7 @@
 				<img src="/static/z/logo.png" alt="" class="ma">
 			</div>
 			<div class="mask_content_body">
-				<form id="AdminLoginForm" action="adminLogin.do" method="post">
+				<form id="AdminLoginForm" action="/adminLogin.do" method="post">
 					<h3>管理员登录</h3>
 					<input id="loginAccounts" placeholder="请输入管理员账户" name="accounts"
 						type="text"
