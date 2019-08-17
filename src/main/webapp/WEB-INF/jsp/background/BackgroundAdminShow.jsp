@@ -42,10 +42,11 @@ th {
 					<c:if test="${admin.adminIsSuper==1}">
 						<li class="active"><a href="/admin/show.do">管理员管理</a></li>
 					</c:if>
+					<li class="active"><a href="/admin/show.do">管理员管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
-						aria-hidden="true"></i>&nbsp;&nbsp;<a class="navbar-link" href="loginOut.do">退出</a>
+						aria-hidden="true"></i>&nbsp;&nbsp;<a class="navbar-link" href="/admin/loginOut.do">退出</a>
 				</p>
 			</div>
 			
@@ -93,7 +94,7 @@ th {
 				</thead>
 				<tbody>
 				
-					<c:forEach items="${list}" var="i">
+					<c:forEach items="${list.data}" var="i">
 						<tr>
 							<td><input type="checkbox" name="check" value="${i.adminId}"></td>
 							<td>${i.adminId}</td>

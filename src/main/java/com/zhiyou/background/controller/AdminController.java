@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zhiyou.background.service.AdminService;
 import com.zhiyou.model.Admin;
 import com.zhiyou.utils.MD5Utils;
+import com.zhiyou.utils.VideoResult2;
 
 @Controller
 @RequestMapping("/admin")
@@ -25,7 +26,7 @@ public class AdminController {
 	@RequestMapping("/show.do")
 	public String show(Model model){
 		List<Admin> list = adminService.selectAll();
-		model.addAttribute("list", list);
+		model.addAttribute("list", VideoResult2.success(list));
 		return "background/BackgroundAdminShow";
 	}
 	
@@ -80,6 +81,19 @@ public class AdminController {
 		adminService.updateByPrimaryKey(admin);
 		return "forward:show.do";
 	}
-	
-	
+	/**
+	 * 退出
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/loginOut.do")
+	public String loginOut(HttpServletRequest req) {
+		req.getSession().removeAttribute("admin");	
+		return "redirect:index";
+	}
+	@RequestMapping("index")
+	public String index() {
+		
+		return"index";
+	}
 }

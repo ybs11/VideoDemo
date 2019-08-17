@@ -63,7 +63,7 @@ b {
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i
 						class="glyphicon glyphicon-log-in" aria-hidden="true"></i>&nbsp;&nbsp;<a
-						class="navbar-link" href="loginOut.do">退出</a>
+						class="navbar-link" href="/admin/loginOut.do">退出</a>
 				</p>
 			</div>
 
