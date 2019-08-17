@@ -11,8 +11,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//拦截所有，除了user/index
-		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/course/**","/speaker/**","/admin/**","/video/**")
-		.excludePathPatterns("/adminLogin.do");
+		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/course/**","/speaker/**","/admin/**","/video/**","/personal/**","/foreground/PersonalCenter.do")
+		.excludePathPatterns("/adminLogin.do","/userLogin.do","/regUser.do");
 	}
 
 	

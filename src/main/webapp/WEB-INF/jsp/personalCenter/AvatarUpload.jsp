@@ -64,11 +64,11 @@
 		<div id="profile_tab">
 			<ul class="profile_tab_header f_left clearfix">
 				<ul class="profile_tab_header f_left clearfix">
-					<li><a href="${pageContext.request.contextPath}/userUpadteShow">更改资料</a></li>
+					<li><a href="${pageContext.request.contextPath}/personal/userUpadteShow">更改资料</a></li>
 					<li class="profile_tab_line">|</li>
-					<li><a href="${pageContext.request.contextPath}/AvatarUpload">更改头像</a></li>
+					<li><a href="${pageContext.request.contextPath}/personal/AvatarUpload">更改头像</a></li>
 					<li class="profile_tab_line">|</li>
-					<li><a href="${pageContext.request.contextPath}/PasswordUpdate">密码安全</a></li>
+					<li><a href="${pageContext.request.contextPath}/personal/PasswordUpdate">密码安全</a></li>
 				</ul>
 			</ul>
 			<div class="proflle_tab_body">
