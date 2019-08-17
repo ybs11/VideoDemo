@@ -17,7 +17,7 @@ public class AdminForegroundService implements AdminService{
 	@Autowired
 	private AdminMapper adminMapper;
 
-	@Cacheable("SELECT_ACCOUNTS_ADMIN")
+
 	public Admin SelectByAccounts(String accounts){
 		AdminExample example = new AdminExample();
 		Criteria criteria = example.createCriteria();
@@ -29,7 +29,7 @@ public class AdminForegroundService implements AdminService{
 		}
 		return null;
 	};
-    @Cacheable("SELECT_ADMINID")
+
 	public Admin SelectByAdminId(int adminId){
 		Admin admin = adminMapper.selectByPrimaryKey(adminId);
 		return admin;

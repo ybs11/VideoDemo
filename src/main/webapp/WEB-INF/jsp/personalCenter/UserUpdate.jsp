@@ -110,7 +110,8 @@
 								<span class="dd">所在地：</span>
 								<div id="city">
 									<select class="prov" name="prov" id="prov" >
-										<option value="北京" 										
+									<option value=" " 	>请选择</option>
+										<option value="北京" 									
 										<c:if test="${prov eq '北京'}">selected</c:if>
 										>北京</option>
 										<option value="天津"

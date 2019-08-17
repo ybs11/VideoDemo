@@ -432,7 +432,7 @@
 						$("#msg").html("<font color='red'>账号错误!</font>");
 
 					}
-				}
+				}      
 			});
 		}
 		
