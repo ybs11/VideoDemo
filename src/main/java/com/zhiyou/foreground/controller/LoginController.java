@@ -41,7 +41,7 @@ public class LoginController {
 			req.setAttribute("msg","密码错误");
 		}else {
 			req.getSession().setAttribute("admin", admin);
-			return "forward:/course/list.do";
+			return "redirect:/course/list.do";
 		}
 		return "index";		
 	}

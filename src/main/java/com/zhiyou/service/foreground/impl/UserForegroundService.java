@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +63,7 @@ public class UserForegroundService implements UserService{
 	}
 
 	@Override
+	@CacheEvict(value = "USERACCOUNTS", allEntries=true)
 	public void update(User user) {
 		int updateByPrimaryKey = userMapper.updateByPrimaryKey(user);
 	}

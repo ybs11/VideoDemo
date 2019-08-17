@@ -42,7 +42,7 @@ th {
 					<c:if test="${admin.adminIsSuper==1}">
 						<li class="active"><a href="/admin/show.do">管理员管理</a></li>
 					</c:if>
-					<li class="active"><a href="/admin/show.do">管理员管理</a></li>
+					
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
