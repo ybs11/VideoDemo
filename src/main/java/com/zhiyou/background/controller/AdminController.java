@@ -80,6 +80,15 @@ public class AdminController {
 		adminService.updateByPrimaryKey(admin);
 		return "forward:show.do";
 	}
-	
-	
+	/**
+	 * 退出
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/loginOut.do")
+	public String loginOut(HttpServletRequest req) {
+		req.getSession().removeAttribute("admin");	
+		return "index";
+
+	}
 }
