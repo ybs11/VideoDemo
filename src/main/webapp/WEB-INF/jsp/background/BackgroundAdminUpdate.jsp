@@ -56,7 +56,9 @@ b {
 					<li><a href="/video/show.do">视频管理</a></li>
 					<li><a href="/speaker/show.do">主讲人管理</a></li>
 					<li><a href="/course/list.do">课程管理</a></li>
-					<li class="active"><a href="/admin/show.do">管理员管理</a></li>
+					<c:if test="${admin.adminIsSuper==1}">
+						<li class="active"><a href="/admin/show.do">管理员管理</a></li>
+					</c:if>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
