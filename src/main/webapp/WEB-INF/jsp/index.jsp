@@ -338,7 +338,7 @@
 					  <button type="button" id="codeBtn" >发送验证码</button>
 					
 					<div id="yzm" class="form-inline">
-						<input name="yzm" style="width: 45%; display: inline-block;"
+						<input  id="yzminput" name="yzm" style="width: 45%; display: inline-block;"
 							type="text">
 						<div id="v_container"
 							style="width: 45%; height: 40px; float: right;">
@@ -382,16 +382,33 @@
 		});
 		$(document).ready(function() {
 			$("#reg_close").click(function() {
+				$("#regEmail").val("");
+				$("#regPsw").val("");
+				$("#regPswAgain").val("");
+				$("#code").val("");
+				$("#yzminput").val("");
+				$("#emailMsg").empty();
+				$("#passMsg").empty();
+				$("#codeMsg").empty();
 				$("#reg").toggle();
 			});
 		});
 		$(document).ready(function() {
 			$("#login_close").click(function() {
+				$("#loginEmail").val("");
+				$("#loginPassword").val("");
+				$("#msgUser").empty();
 				$("#login").toggle();
+				
 			});
 		});
 		$(document).ready(function() {
 			$("#adminLogin_close").click(function() {
+				
+				
+				$("#loginAccounts").val("");
+				$("#loginAccountsPassword").val("");
+				$("#msg").empty();
 				$("#adminLogin").toggle();
 			});
 		});
@@ -399,12 +416,23 @@
 		
 		$(document).ready(function() {
 			$("#find_close").click(function() {
+				
+				$("#loginEmailNew").val("");
+				$("#codeNew").val("");
+				$("#newLoginPassword").val("");
+				
+				$("#codeMsgNew").empty();
+				$("#msgFind").empty();
 				$("#findPassword").toggle();
+				
 			});
 		});
 		
 		$(document).ready(function() {
 			$("#forgetPass").click(function() {
+				$("#loginEmail").val("");
+				$("#loginPassword").val("");
+				$("#msgUser").empty();
 				$("#login").toggle();
 				$("#findPassword").toggle();
 			});

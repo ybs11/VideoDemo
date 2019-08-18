@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -129,9 +131,23 @@ public class LoginController {
 	
 	@RequestMapping("/validateEmail.do")
 	public void validateEmail(String email,HttpServletResponse resp) {
+		
+        final String reg1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+        
+        final Pattern pattern = Pattern.compile(reg1);
+        final Matcher mat = pattern.matcher(email);
+        String[] split = email.split("@");
+        System.out.println(split[0]);
+        boolean flag=false;
+        if(split[0].length()<15  &&split[0].length()>5) {
+        	flag=true;
+        }
+       
+        System.out.println(mat.matches());
+        System.out.println(flag);
 		User user = userService.SelectByAccounts(email);
 		
-		if (user==null) {
+		if (user==null &&  mat.matches()&& flag) {
 			try {
 				resp.getWriter().write("success");
 			} catch (IOException e) {
@@ -142,7 +158,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/regUser.do")
-	public void regUser(String regForm,HttpServletResponse resp) {
+	public void regUser(String regForm,HttpServletResponse resp,HttpServletRequest req) {
 		System.out.println(regForm);
 		String[] formParams = regForm.split("&");
 		String[] emails = formParams[0].split("=");
@@ -162,6 +178,7 @@ public class LoginController {
 			user.setAccounts(accounts);
 			user.setPassword(md5);
 			userService.add(user);
+			req.getSession().setAttribute("user", user);
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

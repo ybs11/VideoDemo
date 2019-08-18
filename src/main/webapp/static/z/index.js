@@ -121,7 +121,7 @@ $("#regEmail").blur(function(){
 				$("#emailMsg").text("该邮箱可用").css("color","green");
 			}else{
 				regIsCommitEmail=false;
-				$("#emailMsg").text("该邮箱已注册，请直接登录").css("color","red");
+				$("#emailMsg").text("该邮箱已注册或者邮箱格式错误").css("color","red");
 			}
 		});
 	}
@@ -263,6 +263,8 @@ $(function(){
 	$("#codeBtn").click(function () {
 		mailsend();
 		time();
+		codeLose();
+		$("#CodeNow").val("");
 	});
 });
 
@@ -303,7 +305,6 @@ function mailcheck() {
 var count = 60;
 function time(){
 	if(count==0){
-		$("#CodeNow").val("");
 		$("#codeBtn").attr('disabled',false);
 		$("#codeBtn").text("发送验证码");
 		 count = 60;
@@ -327,6 +328,9 @@ $(function(){
 	$("#codeBtnNew").click(function () {
 		mailsendnew();
 		timeNew();
+		codeLose();
+		$("#CodeNowNew").val("");
+
 	});
 });
 
@@ -367,7 +371,6 @@ function mailcheckNew() {
 var countNew = 60;
 function timeNew(){
 	if(countNew==0){
-		$("#CodeNowNew").val("");
 		$("#codeBtnNew").attr('disabled',false);
 		$("#codeBtnNew").text("发送验证码");
 		 countNew = 60;
@@ -383,3 +386,22 @@ setTimeout(function () {
 },1000)	
 		
 }
+
+
+var countLose = 300;
+function codeLose(){
+	if(countLose==0){
+		$("#CodeNowNew").val("");
+		$("#CodeNow").val("");
+		countLose = 300;
+		return;
+	}else{
+		countLose--;
+	}
+setTimeout(function () {
+	codeLose()
+},1000)	
+		
+}
+
+
