@@ -119,6 +119,7 @@ $("#regEmail").blur(function(){
 			if(data=="success"){
 				regIsCommitEmail=true;
 				$("#emailMsg").text("该邮箱可用").css("color","green");
+				$("#codeBtn").attr('disabled', false);
 			}else{
 				regIsCommitEmail=false;
 				$("#emailMsg").text("该邮箱已注册或者邮箱格式错误").css("color","red");

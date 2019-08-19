@@ -49,7 +49,7 @@ public class UserForegroundService implements UserService{
 	}
 
 	@Override
-	public String sendEmail(String email) {
+	public String sendEmail(String email) throws Exception{
 		
 		String str="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		StringBuilder code=new StringBuilder(4);
@@ -59,7 +59,9 @@ public class UserForegroundService implements UserService{
 		     code.append(ch);
 		}
 		String codeString = code.toString();
-		MailUtil.setMain(email,codeString );
+		
+		MailUtil.setMain(email,codeString);
+		
 		return codeString;
 	}
 

@@ -411,6 +411,7 @@
 			$("input[name='accounts']").blur(accountsCheck);
 			$("#loginAccountsPassword").blur(accountsCheck);
 			$("#adminSubBtn").click(accountsCheck);
+			$("#codeBtn").attr('disabled', true);
 		});
 		function accountsCheck() {
 

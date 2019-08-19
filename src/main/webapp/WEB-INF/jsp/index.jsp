@@ -439,9 +439,11 @@
 		});
 		$(function() {
 			$("#adminSubBtn").attr('disabled', true);
+			$("#codeBtn").attr('disabled', true);
 			$("input[name='accounts']").blur(accountsCheck);
 			$("#loginAccountsPassword").blur(accountsCheck);
 			$("#adminSubBtn").click(accountsCheck);
+			
 		});
 		function accountsCheck() {
 

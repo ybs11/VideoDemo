@@ -197,14 +197,14 @@ public class LoginController {
 		
 		String receivermail = req.getParameter("mail");
 		System.out.println(receivermail);
-		String sendEmail = userService.sendEmail(receivermail);
-	
+		
 		try {
-			resp.getWriter().write(sendEmail);
-		} catch (IOException e) {
+		String sendEmail = userService.sendEmail(receivermail);
+		resp.getWriter().write(sendEmail);
+		   }catch (Exception e) {
 			
-			e.printStackTrace();
 		}
+		
 		
 	}
 	

@@ -413,6 +413,7 @@
 			$("#findSubBtn").attr('disabled', true);
 			$("#loginEmailNew").blur(NewUserCheck);
 			$("#findSubBtn").click(NewUserCheck);
+			$("#codeBtn").attr('disabled', true);
 		});
 		function NewUserCheck() {
            

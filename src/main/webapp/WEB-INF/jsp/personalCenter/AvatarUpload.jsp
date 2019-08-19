@@ -84,7 +84,7 @@
 						<p style="text-align: center;">当前头像</p>
 					</div>
 					<div class="profile_ifo_area">
-						<form id="upload_form" action="${pageContext.request.contextPath}/uploadAvatar"
+						<form id="upload_form" action="${pageContext.request.contextPath}/personal/uploadAvatar"
 							enctype="multipart/form-data" method="post">
 							<!-- hidden crop params -->
 

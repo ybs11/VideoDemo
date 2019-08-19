@@ -10,5 +10,5 @@ public interface UserService {
     User SelectById(int id);
 	void add(User user);
 	void update(User user);
-	String sendEmail(String email);
+	String sendEmail(String email)throws Exception;
 }

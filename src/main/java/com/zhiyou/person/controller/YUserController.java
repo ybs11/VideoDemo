@@ -90,7 +90,6 @@ public class YUserController {
 	 * 30)提交修改头像
 	 */
 	@RequestMapping("/uploadAvatar")
-	//@ResponseBody
 	public String uploadAvatar(MultipartFile imageFile, HttpServletRequest req) {
 		
 		if(imageFile==null) {
